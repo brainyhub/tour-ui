@@ -1,0 +1,33 @@
+<ul class="sidebar-menu">
+    <li class="sub-menu {{menu.active}}" *ngFor="let menu of applicableMenus">
+        <a href="{{menu.url}}">
+            <i class="{{menu.icon}}"></i>
+             {{menu.title}}
+        </a>
+        <ul class="sub" *ngIf="menu.submenu!=undefined && menu.submenu.length>0" >
+            <li *ngFor="let submenu of menu.submenu">
+                <a href="{{menu.url}}">{{submenu.title}}</a>
+            </li>
+        </ul>     
+    </li>
+        
+
+    <li class="active" *ngIf="applicableReports!=undefined&&applicableReports.length>0">
+        <a href="#"><i class="icon_house_alt"></i>
+            Reports
+        </a>
+    </li>
+    <li class="sub-menu" *ngFor="let menu of applicableReports">
+        <a href="#">
+            <i class="social_myspace"></i>
+             {{menu.label}}<span class="menu-arrow arrow_carrot-right"></span>
+        </a>
+        
+        <ul class="sub" *ngIf="menu.submenu!=undefined && menu.submenu.length>0" >
+            <li *ngFor="let submenu of menu.submenu;let i=index">
+                <a href="#">{{menu.submenu[i].label}}</a>
+            </li>
+        </ul>
+    </li>
+        
+</ul>
