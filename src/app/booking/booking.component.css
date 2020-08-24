@@ -1,0 +1,8 @@
+.main-label{
+    font-size: medium;
+    font-weight: bold;
+ }
+ .main-label p{
+    vertical-align: botton;
+     color:red;
+ }
