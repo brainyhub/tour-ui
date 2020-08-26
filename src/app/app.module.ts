@@ -38,6 +38,7 @@ import { RoleComponent } from './role/role.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { UsersComponent } from './users/users.component';
 import { VehiclesComponent } from './vehicles/vehicles.component';
+import { SiteComponent } from './layout/site/site.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { VehiclesComponent } from './vehicles/vehicles.component';
     RoleComponent,
     InvoicesComponent,
     UsersComponent,
-    VehiclesComponent
+    VehiclesComponent,
+    SiteComponent
     
   ],
   imports: [
