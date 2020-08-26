@@ -39,6 +39,7 @@ import { InvoicesComponent } from './invoices/invoices.component';
 import { UsersComponent } from './users/users.component';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { SiteComponent } from './layout/site/site.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,9 @@ import { SiteComponent } from './layout/site/site.component';
     AppRoutingModule,
     //HomeRoutingModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

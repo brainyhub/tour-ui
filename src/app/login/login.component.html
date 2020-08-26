@@ -1,55 +1,63 @@
-    <div class="container" style="margin-bottom: 60px;">
-        <div class="site-login">
-            <div style="max-width: 350px;margin: 130px auto 0;text-align: center;">
-                <a href="" style="padding-top:50px;padding-top: 50px;font-size: 22px;text-transform: uppercase;">
-                    <span class="lite">Tours</span></a>
-            </div>
-            <form id="login-form" class="login-form" action="/~pawantours/booking/site/login" method="post"
-                style="margin: 10px auto 0;">
-                <input type="hidden" name="_csrf-frontend"
-                    value="BqybZht8VLcvfxaGwMtzG4GFd1UdtWqO1s-vVyPFfuu8nIjgncZKPb0VrmbgaOG-aAdbD5Tbs2epQHC0PqNfRA==">
-                <div class="login-wrap">
-                    <p class="login-img"><i class="icon_lock_alt"></i></p>
-                    <div class="form-group field-loginform-username required">
-                        <label class="control-label" for="loginform-username">Username or Email</label>
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="icon_profile"></i>
-                            </span>
-                            <input type="text"  class="form-control" [(ngModel)]="loginRequest.username" id="userId" name="userId" aria-required="true">
+<div class="container" style="margin-bottom: 60px;">
+    <div class="site-login">
+        <div style="max-width: 350px;margin: 130px auto 0;text-align: center;">
+            <a href="" style="padding-top:50px;padding-top: 50px;font-size: 22px;text-transform: uppercase;">
+                <span class="lite">Tours</span></a>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="login-form" class="login-form" action="/~pawantours/booking/site/login" method="post"
+            style="margin: 10px auto 0;">
+            <input type="hidden" name="_csrf-frontend"
+                value="BqybZht8VLcvfxaGwMtzG4GFd1UdtWqO1s-vVyPFfuu8nIjgncZKPb0VrmbgaOG-aAdbD5Tbs2epQHC0PqNfRA==">
+            <div class="login-wrap">
+                <p class="login-img"><i class="icon_lock_alt"></i></p>
+                <div class="form-group field-loginform-username required">
+                    <label class="control-label" for="loginform-username">Username or Email</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="icon_profile"></i>
+                        </span>
+                        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">First Name is required</div>
                         </div>
-                        <div class="help-block"></div>
                     </div>
-                    <div class="form-group field-loginform-password required">
-                        <label class="control-label" for="loginform-password">Password</label>
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="icon_key_alt"></i>
-                            </span>
-                            <input type="password" [(ngModel)]="loginRequest.password"  name="password" id="password" class="form-control"
-                                name="LoginForm[password]" aria-required="true">
+                    <div class="help-block"></div>
+                </div>
+                <div class="form-group field-loginform-password required">
+                    <label class="control-label" for="loginform-password">Password</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="icon_key_alt"></i>
+                        </span>
+                        <input type="text" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">password is required</div>
                         </div>
-                        <div class="help-block"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group field-loginform-rememberme">
+                    <div class="help-block"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group field-loginform-rememberme">
 
-                                <input type="hidden" name="LoginForm[rememberMe]" value="0"><label><input
-                                        type="checkbox" id="loginform-rememberme" name="LoginForm[rememberMe]"
-                                        value="0"> Remember Me</label>
+                            <input type="hidden" name="LoginForm[rememberMe]" value="0">
+                            <label><input
+                                    type="checkbox" id="loginform-rememberme" name="LoginForm[rememberMe]"
+                                    value="0"> Remember Me</label>
 
-                                <div class="help-block"></div>
-                            </div>
+                            <div class="help-block"></div>
                         </div>
-                        <div class="col-md-6">
-                            <label class="checkbox" style="text-align: right;">
-                                <a href="#">Forgot Password?</a> </label>
-                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="checkbox" style="text-align: right;">
+                            <a href="#">Forgot Password?</a> </label>
                     </div>
                 </div>
-                <button (click)="login()" class="btn btn-primary btn-lg btn-block" name="login-button">Login</button>
-            </form>
-        </div>
-        {{loginRequest|json}}
+            </div>
+            <button (click)="login()" class="btn btn-primary btn-lg btn-block" name="login-button">Login</button>
+        </form>
     </div>
+    {{loginRequest|json}}
+    <p>Form value: {{ loginForm.value | json }}</p>
+<p>Form status: {{ loginForm.status | json }}</p>
+</div>
