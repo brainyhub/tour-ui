@@ -14,10 +14,10 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
       //Site routes goes here 
     { 
-        path: '', 
+        path: 'site', 
         component: SiteComponent,
         children: [
-          { path: '', component: SiteComponent, pathMatch: 'full'},
+          { path: '', component: DashboardComponent},
           { path: 'trip', component: TripComponent},
           { path: 'home', component: HomepageComponent },
           { path: 'dashboard', component: DashboardComponent },
@@ -29,6 +29,20 @@ const routes: Routes = [
     { path: '', component: LoginComponent},
     { path: 'login', component: LoginComponent},
     { path: '**', redirectTo: '' }
+    /*,
+    { 
+      path: 'home', 
+      component: SiteComponent,
+      children: [
+        { path: '', component: SiteComponent, pathMatch: 'full'},
+        { path: 'trip', component: TripComponent},
+        { path: 'home', component: HomepageComponent },
+        { path: 'dashboard', component: DashboardComponent },
+        { path: 'vvtables', component: VvtablesComponent },
+        { path: 'userprofile', component: UserProfileComponent },
+        { path: 'booking', component: BookingComponent },
+      ]
+  }*/
 ];
 
 @NgModule({

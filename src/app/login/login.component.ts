@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         console.log(response);
         if(response!=undefined){
           this.adminService.setUpUserData(response);
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['site']);
         }else{
           this.router.navigate(['']);
         }
