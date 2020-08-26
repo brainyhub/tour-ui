@@ -17,7 +17,6 @@ import { SearchComponent } from './search/search.component';
 import { EventBoardComponent } from './event-board/event-board.component';
 import { SearchTableComponent } from './search-table/search-table.component';
 import { SearchPipe } from './search-table/SearchPipe';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -81,7 +80,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     AppRoutingModule,
     //HomeRoutingModule,
     HttpClientModule,

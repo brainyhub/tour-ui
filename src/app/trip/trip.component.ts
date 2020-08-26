@@ -305,6 +305,6 @@ constructor(private http: HttpClient,private router: Router,private tripService:
     });  
   }
   pageChange(newPage: number) {
-    this.router.navigate(['trip'], { queryParams: { page: newPage } });
+    this.router.navigate(['site/trip'], { queryParams: { page: newPage } });
   }
 }
