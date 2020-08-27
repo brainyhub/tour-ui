@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
       this.loginForm = this.formBuilder.group({
-        username: ['', Validators.required],
-        password: ['', Validators.required]
+        username: ['', [Validators.required,Validators.minLength(5)]],
+        password: ['', [Validators.required,Validators.minLength(5)]]
     });
    
     this.loginRequest={
@@ -33,16 +33,7 @@ export class LoginComponent implements OnInit {
     };
   }
   get f() { return this.loginForm.controls; }
-  createFormControls() {
-    this.username = new FormControl('', [Validators.required,Validators.minLength(5)]);
-    this. password = new FormControl('', [Validators.required,Validators.minLength(5)]);
-  }
-  createForm() {
-    this.loginForm = new FormGroup({
-      username: this.username,
-      password: this.password
-    });
-  }
+  
   onSubmit(){
     this.submitted = true;
     if (this.loginForm.valid) {
