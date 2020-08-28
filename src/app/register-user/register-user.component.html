@@ -1,1 +1,55 @@
-<p>register-user works!</p>
+<div class="registerForm-user">
+    <div style="max-width: 350px;margin: 130px auto 0;text-align: center;">
+        <a href="" style="padding-top:50px;padding-top: 50px;font-size: 22px;text-transform: uppercase;">
+            <span class="lite">Tours</span></a>
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit()" >
+        <div class="registerForm-user" >
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Enter email here"/>
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Enter valid email address</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password1">Password</label>
+                <input [type]="hide ?'password' : 'text'" formControlName="password1" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password1.errors }" placeholder="Enter Password here"/>
+                <span><i class="icon_mat" (click)="hide = !hide">{{hide ? 'visibility' :'visibility_off'}}</i></span>
+                <div *ngIf="submitted && f.password1.errors" class="invalid-feedback">
+                    <div *ngIf="f.password1.errors.required">Password is required</div>
+                    <div *ngIf="f.password1.errors.minlength">Password must be 5 characters long, we need another {{f.password1.errors.minlength.requiredLength - f.password1.errors.minlength.actualLength}} characters </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password2">Confirm Password</label>
+                <input [type]="hide1 ?'password' : 'text'" formControlName="password2" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password2.errors }" placeholder="Enter Confirm Password here"/>
+                <span><i class="icon_mat" (click)="hide1 = !hide1">{{hide1 ? 'visibility' :'visibility_off'}}</i></span>
+                <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
+                    <div *ngIf="f.password2.errors.required">Password is required</div>
+                    <div *ngIf="f.password2.errors.minlength">Password must be 5 characters long, we need another {{f.password2.errors.minlength.requiredLength - f.password2.errors.minlength.actualLength}} characters </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Phone</label>
+                <input type="number" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" placeholder="Enter Phone here"/>
+                <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                    <div *ngIf="f.phone.errors.required">Phone is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Enter username here"/>
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
+                    <div *ngIf="f.username.errors.minlength">Username must be 5 characters long, we need another {{f.username.errors.minlength.requiredLength - f.username.errors.minlength.actualLength}} characters </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block" name="login-button">register</button>
+            <div routerLink="/login"class="btn btn-primary btn-lg btn-block">Login to continue</div>
+        </div>
+    </form>
+</div>

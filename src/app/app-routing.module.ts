@@ -2,6 +2,7 @@ import { SiteComponent } from './layout/site/site.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { VvtablesComponent } from './vvtables/vvtables.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
 import { TripComponent } from './trip/trip.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -14,8 +15,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
       //Site routes goes here 
     { 
-        path: 'site', 
-        component: SiteComponent,
+        path: 'site', component: SiteComponent,
         children: [
           { path: '', component: DashboardComponent},
           { path: 'trip', component: TripComponent},
@@ -23,11 +23,13 @@ const routes: Routes = [
           { path: 'dashboard', component: DashboardComponent },
           { path: 'vvtables', component: VvtablesComponent },
           { path: 'userprofile', component: UserProfileComponent },
-          { path: 'booking', component: BookingComponent },
+          { path: 'booking', component: BookingComponent }
         ]
     },
+    
     { path: '', component: LoginComponent},
     { path: 'login', component: LoginComponent},
+    { path: 'registerUser',component:RegisterUserComponent},
     { path: '**', redirectTo: '' }
     /*,
     { 

@@ -4,7 +4,7 @@
             <a href="" style="padding-top:50px;padding-top: 50px;font-size: 22px;text-transform: uppercase;">
                 <span class="lite">Tours</span></a>
         </div>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="login-form" class="login-form" action="/~pawantours/booking/site/login" method="post"
+        <form [formGroup]="loginForm" id="login-form" class="login-form" action="/~pawantours/booking/site/login" method="post"
             style="margin: 10px auto 0;">
             <input type="hidden" name="_csrf-frontend"
                 value="BqybZht8VLcvfxaGwMtzG4GFd1UdtWqO1s-vVyPFfuu8nIjgncZKPb0VrmbgaOG-aAdbD5Tbs2epQHC0PqNfRA==">
@@ -56,7 +56,8 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg btn-block" name="login-button">Login</button>
+            <button (click)="onSubmit()" class="btn btn-primary btn-lg btn-block" name="login-button">login</button>
+            <div routerLink="/registerUser" class="btn btn-primary btn-lg btn-block" name="registerUser-button">Create New User</div>
         </form>
     </div>
     {{loginRequest|json}}
