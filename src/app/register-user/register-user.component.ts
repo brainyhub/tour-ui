@@ -25,6 +25,7 @@ export class RegisterUserComponent implements OnInit {
   phone: number;
   newroles = new Object();
   roles = [];
+  isDebugMode: Boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,

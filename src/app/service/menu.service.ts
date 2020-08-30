@@ -6,7 +6,7 @@ import { VALIDMENUS } from './menus';
 })
 export class MenuService {
   urlMenus:string="";
-  userName:"Sanjay Dhiman";
+  userName:" ";
   constructor() { }
   public getApplicaleMenus() {
     let user:any=JSON.parse(sessionStorage.getItem("user-info"));
