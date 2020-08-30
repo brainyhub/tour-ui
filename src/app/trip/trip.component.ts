@@ -1,310 +1,242 @@
-import { TripService } from './../service/trip.service';
-import { TripResponseType } from './tripResponseType';
-import { Component, OnInit,OnChanges } from '@angular/core';
-import {TripReport } from './tripReportType';
-import {CreateTripType } from './createTripType';
-import {UpdateTripType } from './updateTripType';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router,ActivatedRoute } from '@angular/router';
+import { TripService } from "./../service/trip.service";
+import { TripResponseType } from "./tripResponseType";
+import { Component, OnInit, OnChanges } from "@angular/core";
+import { TripReport } from "./tripReportType";
+import { CreateTripType } from "./createTripType";
+import { UpdateTripType } from "./updateTripType";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: 'app-trip',
-  templateUrl: './trip.component.html',
-  styleUrls: ['./trip.component.css']
+  selector: "app-trip",
+  templateUrl: "./trip.component.html",
+  styleUrls: ["./trip.component.css"],
 })
-export class TripComponent implements OnInit,OnChanges {
-  report:TripReport;
-  createTrip:CreateTripType;
-  updateTrip:UpdateTripType;
+export class TripComponent implements OnInit, OnChanges {
+  report: TripReport;
+  createTrip: CreateTripType;
+  updateTrip: UpdateTripType;
   tripResponse: TripResponseType[];
   config: any;
-  currentCreateTrip:CreateTripType;
-  currentUpdateTrip:UpdateTripType;
+  currentCreateTrip: CreateTripType;
+  currentUpdateTrip: UpdateTripType;
   currentTripResponse: TripResponseType;
-  deleteRecordEnabled:Boolean=true;
-  isDebugMode=false;
-  isLogin:Boolean=false;
-constructor(private http: HttpClient,private router: Router,private tripService:TripService,private route:ActivatedRoute) { 
-    console.log("constructor TripComponent");
-    /*this.report={
-      "companyId": null,
-      "departmentId": null,
-      "driverId": null,
-      "firstPickTime": null,
-      "firstPickUpPoint": null,
-      "lastDroPoint": null,
-      "packageId": null,
-      "reasonForChange":null,
-      "riderFirstName": null,
-      "riderMobile": null,
-      "status": null,
-      "tripId": null,
-      "triptTitle": null,
-      "vehicleId": null
-    };
-    this.createTrip={
-      "companyId": 0,
-      "departmentId": 0,
-      "driverId": 0,
-      "firstPickTime": "",
-      "firstPickUpPoint": "string",
-      "lastDroPoint": "string",
-      "packageId": 0,
-      "riders": [
-        {
-          "dropDateTime": "",
-          "dropPoint": "string",
-          "email": "string",
-          "firstName": "string",
-          "lastName": "string",
-          "passType": 0,
-          "phone": "string",
-          "pickDateTime": "",
-          "pickPoint": "string"
-        }
-      ],
-      "triptTitle": "string",
-      "vehicleId": 0
-    };
-    this.currentUpdateTrip={
-      "companyChangeRequired": true,
-      "companyId": 0,
-      "departmentChangeRequired": true,
-      "departmentId": 0,
-      "driverChangeRequired": true,
-      "driverId": 0,
-      "firstPickTime": "2020-08-19T17:59:52.479Z",
-      "firstPickUpPoint": "string",
-      "lastDroPoint": "string",
-      "packageChangeRequired": true,
-      "packageId": 0,
-      "reasonForChange": "string",
-      "riderChangeRequired": true,
-      "riders": [
-        {
-          "dropDateTime": "2020-08-19T17:59:52.479Z",
-          "dropPoint": "string",
-          "email": "string",
-          "firstName": "string",
-          "lastName": "string",
-          "passType": 0,
-          "phone": "string",
-          "pickDateTime": "2020-08-19T17:59:52.479Z",
-          "pickPoint": "string"
-        }
-      ],
-      "status": 0,
-      "statusChangeRequired": true,
-      "tripId": 0,
-      "tripInfoChangeRequired": true,
-      "triptTitle": "string",
-      "vehicleChangeRequired": true,
-      "vehicleId": 0
-    };*/
-
+  deleteRecordEnabled: Boolean = true;
+  isDebugMode = false;
+  isLogin: Boolean = false;
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private tripService: TripService,
+    private route: ActivatedRoute
+  ) {
     this.getTripRecords();
   }
-  ngOnChanges(){
-    
-  }
+  ngOnChanges() {}
   ngOnInit() {
     this.config = {
-      currentPage:1,
-      itemsPerPage:4,
-      totalItems: 0
+      currentPage: 1,
+      itemsPerPage: 4,
+      totalItems: 0,
     };
-    this.route.queryParams.subscribe(params => this.config.currentPage = params['page'] ? params['page'] : 1);
- 
-    this.createTrip={
-      "companyId": 1,
-      "departmentId": 1,
-      "driverId": 1,
-      "firstPickTime": "2020-08-20T10:13:36.248Z",
-      "firstPickUpPoint": "firstPickUpPoint",
-      "lastDroPoint": "lastDroPoint",
-      "packageId": 1,
-      "riders": [
+    this.route.queryParams.subscribe(
+      (params) =>
+        (this.config.currentPage = params["page"] ? params["page"] : 1)
+    );
+
+    this.createTrip = {
+      companyId: 1,
+      departmentId: 1,
+      driverId: 1,
+      firstPickTime: "2020-08-20T10:13:36.248Z",
+      firstPickUpPoint: "firstPickUpPoint",
+      lastDroPoint: "lastDroPoint",
+      packageId: 1,
+      riders: [
         {
-          "dropDateTime": "",
-          "dropPoint": "dropDateTime",
-          "email": "string",
-          "firstName": "firstName",
-          "lastName": "lastName",
-          "passType": 1,
-          "phone": "8197700916",
-          "pickDateTime": "2020-08-20T10:13:36.248Z",
-          "pickPoint": "string"
-        }
+          dropDateTime: "",
+          dropPoint: "dropDateTime",
+          email: "string",
+          firstName: "firstName",
+          lastName: "lastName",
+          passType: 1,
+          phone: "8197700916",
+          pickDateTime: "2020-08-20T10:13:36.248Z",
+          pickPoint: "string",
+        },
       ],
-      "triptTitle": "Route",
-      "vehicleId": 1
+      triptTitle: "Route",
+      vehicleId: 1,
     };
-    this.currentUpdateTrip={
-      "companyChangeRequired": false,
-      "companyId": 1,
-      "departmentChangeRequired": false,
-      "departmentId": 1,
-      "driverChangeRequired": false,
-      "driverId": 1,
-      "firstPickTime": "2020-08-19T17:59:52.479Z",
-      "firstPickUpPoint": "string",
-      "lastDroPoint": "string",
-      "packageChangeRequired": false,
-      "packageId": 1,
-      "reasonForChange": "string",
-      "riderChangeRequired": false,
-      "riders": [
+    this.currentUpdateTrip = {
+      companyChangeRequired: false,
+      companyId: 1,
+      departmentChangeRequired: false,
+      departmentId: 1,
+      driverChangeRequired: false,
+      driverId: 1,
+      firstPickTime: "2020-08-19T17:59:52.479Z",
+      firstPickUpPoint: "string",
+      lastDroPoint: "string",
+      packageChangeRequired: false,
+      packageId: 1,
+      reasonForChange: "string",
+      riderChangeRequired: false,
+      riders: [
         {
-          "id":0,
-          "dropDateTime": "2020-08-19T17:59:52.479Z",
-          "dropPoint": "string",
-          "email": "string",
-          "firstName": "string",
-          "lastName": "string",
-          "passType": 1,
-          "phone": "string",
-          "pickDateTime": "2020-08-19T17:59:52.479Z",
-          "pickPoint": "string"
-        }
+          id: 0,
+          dropDateTime: "2020-08-19T17:59:52.479Z",
+          dropPoint: "string",
+          email: "string",
+          firstName: "string",
+          lastName: "string",
+          passType: 1,
+          phone: "string",
+          pickDateTime: "2020-08-19T17:59:52.479Z",
+          pickPoint: "string",
+        },
       ],
-      "status": 0,
-      "statusChangeRequired": false,
-      "tripId": 1,
-      "tripInfoChangeRequired": false,
-      "triptTitle": "string",
-      "vehicleChangeRequired": false,
-      "vehicleId":1
+      status: 0,
+      statusChangeRequired: false,
+      tripId: 1,
+      tripInfoChangeRequired: false,
+      triptTitle: "string",
+      vehicleChangeRequired: false,
+      vehicleId: 1,
     };
-    this.report={
-      "companyId": null,
-      "departmentId": null,
-      "driverId": null,
-      "firstPickTime": null,
-      "firstPickUpPoint": null,
-      "lastDroPoint": null,
-      "packageId": null,
-      "reasonForChange":null,
-      "riderFirstName": null,
-      "riderMobile": null,
-      "status": null,
-      "tripId": null,
-      "triptTitle": null,
-      "vehicleId": null
+    this.report = {
+      companyId: null,
+      departmentId: null,
+      driverId: null,
+      firstPickTime: null,
+      firstPickUpPoint: null,
+      lastDroPoint: null,
+      packageId: null,
+      reasonForChange: null,
+      riderFirstName: null,
+      riderMobile: null,
+      status: null,
+      tripId: null,
+      triptTitle: null,
+      vehicleId: null,
+      tripCreateDtTo: null,
+      tripCreateDtFrom: null,
     };
   }
-  modifyRecord(trip:TripResponseType){
+  modifyRecord(trip: TripResponseType) {
     console.log("modifyRecord");
     console.log(trip);
-    this.currentUpdateTrip.tripId=trip.id;
-    this.currentUpdateTrip.companyId=trip.trip_company_info.id;
-    this.currentUpdateTrip.departmentId=trip.trip_company_department.id;
-    this.currentUpdateTrip.driverId=trip.trip_driver_info.id;
-    this.currentUpdateTrip.firstPickTime=trip.trip_pick_time;
-    this.currentUpdateTrip.firstPickUpPoint=trip.trip_pick_point;
-    this.currentUpdateTrip.lastDroPoint=trip.trip_drop_point;
-    this.currentUpdateTrip.packageId=trip.trip_package_info.id;
-    this.currentUpdateTrip.triptTitle=trip.trip_rout;
-    this.currentUpdateTrip.vehicleId=trip.trip_vehicle_info.id;
-   
-    let ridersObj:any=[];
-    for(let ride of trip.trip_passanger_info){
-      let passanger={
-        "id":ride.id,
-        "dropDateTime": ride.drop_time,
-        "dropPoint": ride.drop,
-        "email": ride.email,
-        "firstName": ride.first_name,
-        "lastName": ride.last_name,
-        "passType": 0,
-        "phone": ride.phone,
-        "pickDateTime": ride.pickup_time,
-        "pickPoint": ride.pickup
-      }
+    this.currentUpdateTrip.tripId = trip.id;
+    this.currentUpdateTrip.companyId = trip.trip_company_info.id;
+    this.currentUpdateTrip.departmentId = trip.trip_company_department.id;
+    this.currentUpdateTrip.driverId = trip.trip_driver_info.id;
+    this.currentUpdateTrip.firstPickTime = trip.trip_pick_time;
+    this.currentUpdateTrip.firstPickUpPoint = trip.trip_pick_point;
+    this.currentUpdateTrip.lastDroPoint = trip.trip_drop_point;
+    this.currentUpdateTrip.packageId = trip.trip_package_info.id;
+    this.currentUpdateTrip.triptTitle = trip.trip_rout;
+    this.currentUpdateTrip.vehicleId = trip.trip_vehicle_info.id;
+
+    let ridersObj: any = [];
+    for (let ride of trip.trip_passanger_info) {
+      let passanger = {
+        id: ride.id,
+        dropDateTime: ride.drop_time,
+        dropPoint: ride.drop,
+        email: ride.email,
+        firstName: ride.first_name,
+        lastName: ride.last_name,
+        passType: 0,
+        phone: ride.phone,
+        pickDateTime: ride.pickup_time,
+        pickPoint: ride.pickup,
+      };
       ridersObj.push(passanger);
     }
-   this.currentUpdateTrip.riders=ridersObj;
+    this.currentUpdateTrip.riders = ridersObj;
   }
 
-  viewRecord(trip:TripResponseType){
-    this.deleteRecordEnabled=false;
-    this.currentTripResponse=trip;
+  viewRecord(trip: TripResponseType) {
+    this.deleteRecordEnabled = false;
+    this.currentTripResponse = trip;
   }
-  deleteRecord(trip:TripResponseType){
-    this.deleteRecordEnabled=true;
-    this.currentTripResponse=trip;
+  deleteRecord(trip: TripResponseType) {
+    this.deleteRecordEnabled = true;
+    this.currentTripResponse = trip;
   }
-  addNewRider(){
+  addNewRider() {
     this.createTrip.riders.push({
-      "dropDateTime": "",
-      "dropPoint": "",
-      "email": "",
-      "firstName": "",
-      "lastName": "",
-      "passType": 0,
-      "phone": "",
-      "pickDateTime": "",
-      "pickPoint": ""
+      dropDateTime: "",
+      dropPoint: "",
+      email: "",
+      firstName: "",
+      lastName: "",
+      passType: 0,
+      phone: "",
+      pickDateTime: "",
+      pickPoint: "",
     });
   }
-  addNewUpdateRider(){
+  addNewUpdateRider() {
     this.currentUpdateTrip.riders.push({
-      "id":0,
-      "dropDateTime": "",
-      "dropPoint": "",
-      "email": "",
-      "firstName": "",
-      "lastName": "",
-      "passType": 0,
-      "phone": "",
-      "pickDateTime": "",
-      "pickPoint": ""
+      id: 0,
+      dropDateTime: "",
+      dropPoint: "",
+      email: "",
+      firstName: "",
+      lastName: "",
+      passType: 0,
+      phone: "",
+      pickDateTime: "",
+      pickPoint: "",
     });
   }
-  deleteNewlyAddedRider(riderReq:any){
-    let count=0;
-    for(let rider of this.createTrip.riders){
-      if(rider.phone==riderReq.phone){
-        this.createTrip.riders.splice(count,1);
+  deleteNewlyAddedRider(riderReq: any) {
+    let count = 0;
+    for (let rider of this.createTrip.riders) {
+      if (rider.phone == riderReq.phone) {
+        this.createTrip.riders.splice(count, 1);
         break;
-       }
-       count++;
+      }
+      count++;
     }
   }
-  deleteNewlyAddedRiderFromUpdate(riderReq:any){
-    let count=0;
-    for(let rider of this.currentUpdateTrip.riders){
-      if(rider.phone==riderReq.phone){
-        this.currentUpdateTrip.riders.splice(count,1);
+  deleteNewlyAddedRiderFromUpdate(riderReq: any) {
+    let count = 0;
+    for (let rider of this.currentUpdateTrip.riders) {
+      if (rider.phone == riderReq.phone) {
+        this.currentUpdateTrip.riders.splice(count, 1);
         break;
-       }
-       count++;
+      }
+      count++;
     }
   }
   getTripRecords() {
-    this.tripService.getTripRecords().subscribe(data => {
+    this.tripService.getTripRecords().subscribe((data) => {
       console.log("All trips");
       console.log(data);
-      this.tripResponse=data;
-    })
-  } 
-  generateReport(){
-    this.tripService.generateReport(this.report).subscribe(data => {
-      
-      this.tripResponse=data;
+      this.tripResponse = data;
     });
   }
-  createNewTrip(){
-    this.tripService.createNewTrip(this.createTrip).subscribe(data => {
+  generateReport() {
+    this.tripService.generateReport(this.report).subscribe((data) => {
+      this.tripResponse = data;
+    });
+  }
+  createNewTrip() {
+    this.tripService.createNewTrip(this.createTrip).subscribe((data) => {
       this.getTripRecords();
     });
   }
-  updateTripToDb(){
-    this.tripService.updateTripToDb(this.currentUpdateTrip).subscribe(data => {
-      this.getTripRecords();
-      console.log(this.tripResponse);
-    });  
+  updateTripToDb() {
+    this.tripService
+      .updateTripToDb(this.currentUpdateTrip)
+      .subscribe((data) => {
+        this.getTripRecords();
+        console.log(this.tripResponse);
+      });
   }
   pageChange(newPage: number) {
-    this.router.navigate(['site/trip'], { queryParams: { page: newPage } });
+    this.router.navigate(["site/trip"], { queryParams: { page: newPage } });
   }
 }

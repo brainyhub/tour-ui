@@ -99,10 +99,10 @@ ul.sidebar-menu li a{
     border-right: 1px solid #D7D7D7;
     border-bottom: 1px solid #D7D7D7;
 }
-/*ul.sidebar-menu li a i{
+ul.sidebar-menu li a i{
     position: relative;
     top: 2px;
-}*/
+}
 ul.sidebar-menu li.active a, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
     background: #eeeeee;
     color: #007AFF;

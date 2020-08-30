@@ -1,5 +1,12 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-  <ul *ngIf="isUserLogin" class="navbar-nav" style="float:right">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Tour & Travel</a>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right" style="margin-right:100px">
+      <li><a href="#" class="nav-link"><span style="margin-right:20px ;"><font color="white">Welcome :</font>
+        <font color="yellow" >{{userName|uppercase}}</font></span></a></li>
       <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-bounding-box" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -12,5 +19,7 @@
           <a class="dropdown-item" href="#" (click)="logout()">Log out</a>
         </div>
       </li>
+      
     </ul>
+  </div>
   </nav>

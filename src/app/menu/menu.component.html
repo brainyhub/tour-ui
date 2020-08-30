@@ -1,4 +1,21 @@
+<nav id="sidebar">
 
+    <ul class="sidebar-menu">
+        <li *ngFor="let menu of applicableMenus">
+            <a *ngIf="menu.hasChild" href="{{menu.url}}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{menu.title}}</a>
+            <a *ngIf="!menu.hasChild" href="{{menu.url}}"  aria-expanded="false" >{{menu.title}}</a>
+            <ul class="collapse list-unstyled" id="{{menu.id}}" >
+                <li *ngFor="let submenu of menu.submenu">
+                    <a href="{{submenu.url}}">{{submenu.title}}</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</nav>
+
+
+<!--
 <ul class="sidebar-menu">
     <li class="sub-menu {{menu.active}}" *ngFor="let menu of applicableMenus">
         <a href="{{menu.url}}">
@@ -31,8 +48,15 @@
         </ul>
     </li>
         
-</ul>
+</ul>-->
 <script src="../../../node_modules/jquery/dist/jquery.js"></script>
 <script src="../../assets/js/jquery.nicescroll.js"></script>
 <script src="../../assets/js/scripts.js"></script>
 <script src="../../../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+    });
+</script>

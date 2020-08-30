@@ -1,3 +1,4 @@
+import { MenuItemType } from './menuItemsType';
 import { MenuService } from '../service/menu.service';
 import { Component, OnInit, OnChanges } from '@angular/core';
 
@@ -19,5 +20,17 @@ export class MenuComponent implements OnInit,OnChanges{
   }
   ngOnChanges(){
     this.applicableMenus = JSON.parse(sessionStorage.getItem("menu-data"));
+  }
+  getMenuStyle(menu:any){
+    console.log(menu);
+    console.log(menu.submenu);
+    if(menu.submenu!=undefined && menu.submenu.length>0){
+      console.log("-true");
+      return "dropdown-toggle";
+    }
+    console.log("-false");
+    console.log("---------------------------");
+    
+    return "";
   }
 }

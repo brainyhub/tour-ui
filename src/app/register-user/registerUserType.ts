@@ -1,13 +1,14 @@
-export interface RegisterUserType{
-    "email": string,
-    "password": string,
-    "phone": string,
-    "rolePermission": Number,
-    "roles": [
+export interface RegisterUserType {
+  email: string;
+  password: string;
+  phone: string;
+  rolePermission: {
+    roles: [
       {
-        "commaSeperatedPermission": string,
-        "role":number
+        commaSeperatedPermissions: string;
+        role: Number;
       }
-    ],
-    "username": string
-  }
+    ];
+  };
+  username: string;
+}

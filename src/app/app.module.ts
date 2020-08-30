@@ -39,6 +39,11 @@ import { UsersComponent } from './users/users.component';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { SiteComponent } from './layout/site/site.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AssignRoleComponent } from './assign-role/assign-role.component';
+import { AssignPermissionComponent } from './assign-permission/assign-permission.component';
+import { SuperAdminComponent } from './super-admin/super-admin.component';
+import { TaxComponent } from './tax/tax.component';
+import { StatusComponent } from './status/status.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +80,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     InvoicesComponent,
     UsersComponent,
     VehiclesComponent,
-    SiteComponent
+    SiteComponent,
+    AssignRoleComponent,
+    AssignPermissionComponent,
+    SuperAdminComponent,
+    TaxComponent,
+    StatusComponent
     
   ],
   imports: [
