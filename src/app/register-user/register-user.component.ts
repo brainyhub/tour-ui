@@ -8,7 +8,6 @@ import {
   FormControl,
 } from "@angular/forms";
 import { RegisterUserService } from "./../service/register-user.service";
-import { timeStamp } from "console";
 
 @Component({
   selector: "app-register-user",
