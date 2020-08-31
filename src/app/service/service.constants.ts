@@ -1,6 +1,6 @@
 export class ServiceConstants {
-  public static appContext: string = "http://15.207.210.221:8080/";
-  //public static appContext: string = "http://localhost:8080/";
+  //public static appContext: string = "http://15.207.210.221:8080/";
+  public static appContext: string = "http://localhost:8080/";
   public static loginUrl: string =
     ServiceConstants.appContext + "tour/adminService/login";
   public static tripReportUrl: string =
@@ -11,4 +11,6 @@ export class ServiceConstants {
     ServiceConstants.appContext + "tour/api/ver01/tripservice/trip";
   public static registerUserUrl: string =
     ServiceConstants.appContext + "tour/adminService/public/registerUser";
+  public static updateUserUrl: string =
+    ServiceConstants.appContext + "tour/adminService/user";
 }

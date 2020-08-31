@@ -1,1 +1,32 @@
-<p>user-profile works!</p>
+<div *ngIf="!editMode" style="margin-top: 110px">
+  <div *ngIf="recordUpdated">Record is updated...</div>
+  <p>username:{{ user.username }}</p>
+  <p>email:{{ user.email }}</p>
+  <p>phone:{{ user.phone }}</p>
+  <p *ngIf="isDebugMode">{{ user | json }}</p>
+</div>
+
+<div *ngIf="editMode" style="margin-top: 110px">
+  <p>
+    username:<input
+      type="text"
+      [(ngModel)]="updateUser.username"
+      name="username"
+    />
+  </p>
+  <p>email:<input type="text" [(ngModel)]="updateUser.email" name="email" /></p>
+  <p>phone:<input type="text" [(ngModel)]="updateUser.phone" name="phone" /></p>
+  <p>
+    password:<input
+      type="text"
+      [(ngModel)]="updateUser.password"
+      name="password"
+    />
+  </p>
+  <button (click)="updateUserProfileToDb()">Update</button>
+  <p *ngIf="isDebugMode">{{ updateUser | json }}</p>
+</div>
+<div>
+  <button *ngIf="!editMode" (click)="setEditMode(true)">edit</button>
+  <button *ngIf="editMode" (click)="setEditMode(false)">view</button>
+</div>

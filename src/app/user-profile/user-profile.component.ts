@@ -1,44 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-
-/*export interface EditUser{
-  "firstNmae": string;
-  "lastName": string;
-  "email": string;
-  "mobile": string;
-  "oldPass": string;
-  "newPass": string;
-  "confirmPass": string;
-}*/
+import { RegisterUserService } from "./../service/register-user.service";
+import { UpdateUser } from "./UpdateUser";
+import { RegisterUser } from "./../register-user/RegisterUser";
+import { Component, OnInit } from "@angular/core";
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  selector: "app-user-profile",
+  templateUrl: "./user-profile.component.html",
+  styleUrls: ["./user-profile.component.css"],
 })
 export class UserProfileComponent implements OnInit {
-//  editUser: EditUser;
-  constructor() { }
-
-  ngOnInit() {
-   /* this.editUser={
-      "firstNmae": "",
-      "lastName": "",
-      "email": "",
-      "mobile": "",
-      "oldPass": "",
-      "newPass": "",
-      "confirmPass": ""
-    };*/
+  //  editUser: EditUser;
+  constructor(private userService: RegisterUserService) {}
+  editMode: Boolean = false;
+  isDebugMode: Boolean = false;
+  recordUpdated: Boolean = false;
+  user: RegisterUser = new RegisterUser();
+  updateUser: UpdateUser = new UpdateUser();
+  setEditMode(flg: Boolean) {
+    this.editMode = flg;
   }
- /* updateUser(user, id){
-    this.form.setValue({
-      index: id,
-      firstNmae: user.firstNmae,
-      lastName: user.lastName,
-      email: user.email,
-      mobile: user.mobile,
-      oldPass: user.oldPass,
-      newPass: user.newPass,
-      confirmPass: user.confirmPass
-    })
-  }*/
+  ngOnInit() {
+    this.user = JSON.parse(sessionStorage.getItem("user-info"));
+    console.log("userinfo");
+    console.log(this.user);
+    this.setEditData();
+  }
+  setEditData() {
+    this.updateUser.username = this.user.username;
+    this.updateUser.email = this.user.email;
+    this.updateUser.phone = this.user.phone;
+  }
+  setUserUpdatedData() {
+    this.user.username = this.updateUser.username;
+    this.user.email = this.updateUser.email;
+    this.user.phone = this.updateUser.phone;
+    sessionStorage.setItem("user-info", JSON.stringify(this.user));
+  }
+  updateUserProfileToDb() {
+    this.userService.updateUser(this.updateUser).subscribe((data) => {
+      console.log("Updated");
+      this.setUserUpdatedData();
+      this.editMode = false;
+      this.recordUpdated = true;
+    });
+  }
 }

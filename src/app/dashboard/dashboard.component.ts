@@ -67,7 +67,6 @@ export class DashboardComponent implements OnInit {
       tripCreateDtTo: null,
       tripCreateDtFrom: null,
     };
-    alert(fromDt + "-" + toDt);
     tripReport.tripCreateDtFrom = fromDt + "T00:00:00.000Z";
     tripReport.tripCreateDtTo = toDt + "T24:00:00.000Z";
     tripReport.status = 1;
