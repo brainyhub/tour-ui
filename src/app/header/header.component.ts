@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     let user: any = JSON.parse(sessionStorage.getItem("user-info"));
     if (user != undefined) {
-      this.userName = user.userName;
+      this.userName = user.username;
       this.isUserLogin = true;
     }
   }
