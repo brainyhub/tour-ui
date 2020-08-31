@@ -44,6 +44,7 @@ import { AssignPermissionComponent } from './assign-permission/assign-permission
 import { SuperAdminComponent } from './super-admin/super-admin.component';
 import { TaxComponent } from './tax/tax.component';
 import { StatusComponent } from './status/status.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,7 @@ import { StatusComponent } from './status/status.component';
     AssignPermissionComponent,
     SuperAdminComponent,
     TaxComponent,
-    StatusComponent
+    StatusComponent,
     
   ],
   imports: [
@@ -97,7 +98,9 @@ import { StatusComponent } from './status/status.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

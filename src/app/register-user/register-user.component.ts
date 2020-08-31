@@ -63,7 +63,11 @@ export class RegisterUserComponent implements OnInit {
     this.submitted = true;
     if (!this.registerForm.invalid && !this.passwordMismatch) {
       this.registerUserService.registerNewUser(this.registerUser).subscribe(
-        (response) => console.log("success", response),
+        (response) => {
+          console.log("success", response)
+          alert("Successfully Register Please login ");
+          this.router.navigate(['/login']);
+        },
         (error) => console.log("Error!", error)
       );
       this.loading = true;
