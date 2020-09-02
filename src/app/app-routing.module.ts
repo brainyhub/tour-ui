@@ -13,6 +13,8 @@ import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { VvtablesComponent } from "./vvtables/vvtables.component";
 import { LoginComponent } from "./login/login.component";
 import { RegisterUserComponent } from "./register-user/register-user.component";
+import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
+import { ChangePasswordComponent } from "./change-password/change-password.component";
 import { TripComponent } from "./trip/trip.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { HomepageComponent } from "./homepage/homepage.component";
@@ -52,6 +54,8 @@ const routes: Routes = [
   { path: "", component: LoginComponent },
   { path: "login", component: LoginComponent },
   { path: "registerUser", component: RegisterUserComponent },
+  { path: "forgotPassword",component:ForgotPasswordComponent},
+  { path: "changePassword",component:ChangePasswordComponent},
   { path: "**", redirectTo: "" },
 ];
 

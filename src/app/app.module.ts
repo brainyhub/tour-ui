@@ -45,6 +45,7 @@ import { SuperAdminComponent } from './super-admin/super-admin.component';
 import { TaxComponent } from './tax/tax.component';
 import { StatusComponent } from './status/status.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { CookieService } from 'ngx-cookie-service';
     SuperAdminComponent,
     TaxComponent,
     StatusComponent,
+    ChangePasswordComponent,
     
   ],
   imports: [

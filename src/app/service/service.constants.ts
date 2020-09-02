@@ -11,6 +11,8 @@ export class ServiceConstants {
     ServiceConstants.appContext + "tour/api/ver01/tripservice/trip";
   public static registerUserUrl: string =
     ServiceConstants.appContext + "tour/adminService/public/registerUser";
-  public static updateUserUrl: string =
+    public static updateUserUrl: string =
     ServiceConstants.appContext + "tour/adminService/user";
+    public static forgotPasswordUrl: string =
+    ServiceConstants.appContext + "tour/adminService/forgotpassword";
 }
