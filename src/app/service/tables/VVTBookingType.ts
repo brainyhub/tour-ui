@@ -1,0 +1,1 @@
+export const VVTBookingType: any[] =[{"id":1,"key":null,"keyAlt":null,"title":"company"},{"id":2,"key":null,"keyAlt":null,"title":"individual"}]

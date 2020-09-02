@@ -1,0 +1,1 @@
+export const VVTVehicle: any[] =[{"id":1,"key":1,"keyAlt":1,"title":"vehicle-2346738246"},{"id":2,"key":1,"keyAlt":2,"title":"Tata Sumo-AP09 CJ7938"},{"id":3,"key":2,"keyAlt":3,"title":"Maruti Swift-KA02 CP7145"},{"id":4,"key":2,"keyAlt":4,"title":"Hyundai i10\r\n-KA02 HB1423"}]

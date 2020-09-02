@@ -1,0 +1,1 @@
+export const VVTTaxType: any[] =[{"id":1,"key":null,"keyAlt":null,"title":"Company tax"},{"id":2,"key":null,"keyAlt":null,"title":"Company Other Tax"},{"id":3,"key":null,"keyAlt":null,"title":"Individual Tax"}]

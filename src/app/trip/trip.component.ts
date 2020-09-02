@@ -1,3 +1,4 @@
+import { VVTServiceService } from "./../service/vvtservice.service";
 import { TripService } from "./../service/trip.service";
 import { TripResponseType } from "./tripResponseType";
 import { Component, OnInit, OnChanges } from "@angular/core";
@@ -6,6 +7,7 @@ import { CreateTripType } from "./createTripType";
 import { UpdateTripType } from "./updateTripType";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
+import { VVT } from "../service/tables/VVT";
 
 @Component({
   selector: "app-trip",
@@ -22,18 +24,21 @@ export class TripComponent implements OnInit, OnChanges {
   currentUpdateTrip: UpdateTripType;
   currentTripResponse: TripResponseType;
   deleteRecordEnabled: Boolean = true;
-  isDebugMode = false;
+  isDebugMode = true;
   isLogin: Boolean = false;
+  vvtCompanies: VVT[];
   constructor(
     private http: HttpClient,
     private router: Router,
     private tripService: TripService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private vvtService: VVTServiceService
   ) {
     this.getTripRecords();
   }
   ngOnChanges() {}
   ngOnInit() {
+    this.vvtCompanies = this.vvtService.COMPANIES;
     this.config = {
       currentPage: 1,
       itemsPerPage: 4,

@@ -54,8 +54,8 @@ const routes: Routes = [
   { path: "", component: LoginComponent },
   { path: "login", component: LoginComponent },
   { path: "registerUser", component: RegisterUserComponent },
-  { path: "forgotPassword",component:ForgotPasswordComponent},
-  { path: "changePassword/:username",component:ChangePasswordComponent},
+  { path: "forgotPassword", component: ForgotPasswordComponent },
+  { path: "changePassword", component: ChangePasswordComponent },
   { path: "**", redirectTo: "" },
 ];
 

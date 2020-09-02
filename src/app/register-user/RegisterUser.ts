@@ -20,8 +20,8 @@ export class RegisterUser implements RegisterUserType {
     this.rolePermission = {
       roles: [
         {
-          commaSeperatedPermissions: "0",
-          role: 0,
+          commaSeperatedPermissions: "1,2,3,4,5,6,7,8,9,10",
+          role: 1,
         },
       ],
     };

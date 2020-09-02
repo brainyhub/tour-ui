@@ -1,0 +1,1 @@
+export const VVTNotificationType: any[] =[{"id":1,"key":null,"keyAlt":null,"title":"Email"},{"id":2,"key":null,"keyAlt":null,"title":"SMS"}]

@@ -1,9 +1,9 @@
 import { ForgotPasswordType } from "./forgotPasswordType";
 export class ForgotPassword implements ForgotPasswordType {
-  username: string;
+  userName: string;
   carrierType:string;
   constructor() {
-    this.username = "";
+    this.userName = "";
     this.carrierType="";
   }
     

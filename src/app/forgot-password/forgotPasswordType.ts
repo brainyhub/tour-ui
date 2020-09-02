@@ -1,4 +1,4 @@
 export interface ForgotPasswordType {
-  username: string;
+  userName: string;
   carrierType:string;
 }

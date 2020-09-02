@@ -1,0 +1,1 @@
+export const VVTRole: any[] =[{"id":1,"key":null,"keyAlt":null,"title":"Super Admin"},{"id":2,"key":null,"keyAlt":null,"title":"Client"},{"id":3,"key":null,"keyAlt":null,"title":"Staff"},{"id":4,"key":null,"keyAlt":null,"title":"Customer"},{"id":5,"key":null,"keyAlt":null,"title":"Visitor"}]
