@@ -17,4 +17,11 @@ export class ServiceConstants {
     ServiceConstants.appContext + "tour/adminService/forgotpassword";
     public static changePasswordUrl: string =
     ServiceConstants.appContext + "tour/adminService/forgotpasswordprocess";
+    public static companyReportUrl: string    = 
+    ServiceConstants.appContext + "tour/api/ver01/vvt/company";
+    public static newCompanyUrl: string       = 
+    ServiceConstants.appContext + "tour/api/ver01/vvt/company";
+    public static updateCompanyUrl: string    = 
+    ServiceConstants.appContext + "tour/api/ver01/vvt/company/update";
+
 }
