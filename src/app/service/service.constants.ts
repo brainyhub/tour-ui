@@ -15,4 +15,6 @@ export class ServiceConstants {
     ServiceConstants.appContext + "tour/adminService/user";
     public static forgotPasswordUrl: string =
     ServiceConstants.appContext + "tour/adminService/forgotpassword";
+    public static changePasswordUrl: string =
+    ServiceConstants.appContext + "tour/adminService/forgotpasswordprocess";
 }

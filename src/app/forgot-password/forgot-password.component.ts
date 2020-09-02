@@ -30,19 +30,19 @@ export class ForgotPasswordComponent implements OnInit {
   }
   onFormSubmit() {
     this.submitted = true;
-    console.log(this.forgotForm.value);
-    console.log(this.forgotPassword);
     if((this.forgotForm.value.email == true || this.forgotForm.value.phone == true) && this.forgotForm.valid ){
       this.forgotPassword.username=this.forgotForm.value.username;
       this.forgotPassword.carrierType=(
                this.forgotForm.value.email==true && this.forgotForm.value.phone==true ?"3":(this.forgotForm.value.phone==true?"2":"1"));
-      this.forgotPasswordService.forgotpassword(this.forgotPassword).subscribe(
+      //comment the navigate path(line no:38) and uncomment the comment path(line39-line45) 
+       this.router.navigate(['/changePassword',this.forgotPassword.username]);
+       /*this.forgotPasswordService.forgotpassword(this.forgotPassword).subscribe(
         (response) => {
           console.log("success", response)
           this.router.navigate(['/changePassword']);
         },
         (error) => console.log("Error!", error)
-      )
+       )*/
     }
     else{
       console.log(this.forgotForm.value);
@@ -50,6 +50,9 @@ export class ForgotPasswordComponent implements OnInit {
     
       alert("please chose a way to receive a OTP")
     }
+    console.log(this.forgotForm.value);
+    console.log(this.forgotPassword);
+    
     this.loading = true;
   }
 
