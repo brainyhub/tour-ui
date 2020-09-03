@@ -17,18 +17,25 @@
     <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit()">
       <div class="registerForm-user">
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="username">Username</label>
           <input
+            [(ngModel)]="registerUser.username"
             type="text"
-            [(ngModel)]="registerUser.email"
-            formControlName="email"
+            formControlName="username"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-            placeholder="Enter email here"
+            [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+            placeholder="Enter username here"
           />
-          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">Email is required</div>
-            <div *ngIf="f.email.errors.email">Enter valid email address</div>
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+            <div *ngIf="f.username.errors.minlength">
+              Username must be 5 characters long, we need another
+              {{
+                f.username.errors.minlength.requiredLength -
+                  f.username.errors.minlength.actualLength
+              }}
+              characters
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -89,6 +96,21 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            [(ngModel)]="registerUser.email"
+            formControlName="email"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+            placeholder="Enter email here"
+          />
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+            <div *ngIf="f.email.errors.email">Enter valid email address</div>
+          </div>
+        </div>
+        <div class="form-group">
           <label for="phone">Phone</label>
           <input
             [(ngModel)]="registerUser.phone"
@@ -100,28 +122,6 @@
           />
           <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
             <div *ngIf="f.phone.errors.required">Phone is required</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input
-            [(ngModel)]="registerUser.username"
-            type="text"
-            formControlName="username"
-            class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
-            placeholder="Enter username here"
-          />
-          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-            <div *ngIf="f.username.errors.required">Username is required</div>
-            <div *ngIf="f.username.errors.minlength">
-              Username must be 5 characters long, we need another
-              {{
-                f.username.errors.minlength.requiredLength -
-                  f.username.errors.minlength.actualLength
-              }}
-              characters
-            </div>
           </div>
         </div>
       </div>
