@@ -17,13 +17,14 @@ export class LoginComponent implements OnInit {
   loginRequest:LoginRequest;
   loginForm: FormGroup;
   submitted = false;
-  
+  rememberMe:Boolean;
   constructor(private adminService:AdminService,private router:Router,private formBuilder: FormBuilder,private cookies:CookieService) { 
 
   }
   
 
   ngOnInit() {
+      this.rememberMe=this.cookies.check("username");
       this.loginForm = this.formBuilder.group({
         username: ['', [Validators.required,Validators.minLength(5)]],
         password: ['', [Validators.required,Validators.minLength(5)]],
@@ -32,8 +33,8 @@ export class LoginComponent implements OnInit {
    
     this.loginRequest=
     {
-      "password": this.cookies.get("username") != null?this.cookies.get("username"):"admin",
-      "username": this.cookies.get("password") != null?this.cookies.get("password"):"admin"
+      "username": this.cookies.check("username") ?this.cookies.get("username"):"admin",
+      "password": this.cookies.check("password") ?this.cookies.get("password"):"admin"
     };
   }
   get f() { return this.loginForm.controls; }
