@@ -65,6 +65,10 @@ export class LoginComponent implements OnInit {
               this.cookies.set("username", this.loginForm.value.username);
               this.cookies.set("password", this.loginForm.value.password);
             }
+            else{
+              this.cookies.delete("username");
+              this.cookies.delete("password");
+            }
             this.router.navigate(["/site"]);
           } else {
             this.router.navigate([""]);
