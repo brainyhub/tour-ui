@@ -6,7 +6,7 @@ import { ToastrService } from "ngx-toastr";
 })
 export class NotifyService {
   constructor(private toastrService: ToastrService) {}
-  successMsg(txt: string) {
-    this.toastrService.success("Data shown successfully !!", "Notification");
+  public success(text: string, heading: string) {
+    this.toastrService.success(text, heading);
   }
 }
