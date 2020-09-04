@@ -51,8 +51,6 @@ export class ForgotPasswordComponent implements OnInit {
           : this.forgotForm.value.phone == true
           ? "2"
           : "1";
-      //comment the navigate path(line no:38) and uncomment the comment path(line39-line45)
-      //this.router.navigate(['/changePassword',this.forgotPassword.userName]);
       this.forgotPasswordService.forgotpassword(this.forgotPassword).subscribe(
         (response) => {
           let navigationExtras: NavigationExtras = {
