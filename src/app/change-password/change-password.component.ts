@@ -1,4 +1,5 @@
 import { Observable } from "rxjs";
+import { NotifyService } from "./../service/notify.service";
 import { Component, OnInit } from "@angular/core";
 import { ChangePassword } from "./ChangePassword";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -20,7 +21,8 @@ export class ChangePasswordComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private changePasswordService: ChangePasswordService,
-    private activatedroute: ActivatedRoute
+    private activatedroute: ActivatedRoute,
+    private notifyService: NotifyService
   ) {}
 
   ngOnInit() {
@@ -37,6 +39,7 @@ export class ChangePasswordComponent implements OnInit {
   passwordCheck() {
     if (this.changePassword.userPassword != this.changeForm.value.password2) {
       this.passwordMismatch = true;
+      this.notifyService.warningMsg("Confirm Password should be same as Password","Mismatch!!");
       this.changeForm.controls["password2"].setErrors({ incorrect: true });
     } else {
       this.passwordMismatch = false;
@@ -52,14 +55,17 @@ export class ChangePasswordComponent implements OnInit {
       this.changePasswordService.changepassword(this.changePassword).subscribe(
         (response) => {
           console.log("success", response);
-          alert("successfully change passwors now login");
+          if(response.success){
+            this.notifyService.successMsg("Now login","Successfully change passwors");
+          }
+          else{
+            this.notifyService.errorMsg("login or Forgot Password again","OTP is not match");
+          }
           this.router.navigate(["/login"]);
         },
         (error) => console.log("Error!", error)
       );
     }
-    console.log(this.changeForm.value);
-    console.log(this.changePassword);
     this.loading = true;
   }
 }

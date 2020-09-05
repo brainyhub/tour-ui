@@ -1,3 +1,4 @@
+import { NotifyService } from "./../service/notify.service";
 import { Component, OnInit } from "@angular/core";
 import { ForgotPassword } from "./ForgotPassword";
 import { Router, NavigationExtras } from "@angular/router";
@@ -22,7 +23,8 @@ export class ForgotPasswordComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private forgotPasswordService: ForgotPasswordService
+    private forgotPasswordService: ForgotPasswordService,
+    private notifyService: NotifyService
   ) {}
 
   ngOnInit() {
@@ -62,17 +64,14 @@ export class ForgotPasswordComponent implements OnInit {
           console.log("success", response);
           this.router.navigate(["/changePassword"], navigationExtras);
         },
-        (error) => console.log("Error!", error)
+        (error) => {
+          this.notifyService.errorMsg("Username or Email is Invalid.","Error !!");
+          this.loading = true;
+        }
       );
     } else {
-      console.log(this.forgotForm.value);
-      console.log(this.forgotPassword);
-
-      alert("please chose a way to receive a OTP");
+      this.notifyService.warningMsg("Please chose a way to receive a OTP.","Warning!!");
     }
-    console.log(this.forgotForm.value);
-    console.log(this.forgotPassword);
-
     this.loading = true;
   }
 }
