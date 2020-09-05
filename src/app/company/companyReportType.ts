@@ -1,12 +1,12 @@
 export interface CompanyReport
 {
-    "address": "asd",
-    "email": "string",
-    "gstNo": "string",
-    "isActive": "string",
-    "phone": "string",
-    "title": "string",
-    "website": "string"
+    "address": string,
+    "email": string,
+    "gstNo": string,
+    "isActive": string,
+    "phone": string,
+    "title": string,
+    "website": string
 }
 
 /*
