@@ -27,6 +27,7 @@ export class CompanyComponent implements OnInit {
   isDebugMode=false;
   isLogin:Boolean=false;
 
+  
   addcompany:FormGroup;
 
       
