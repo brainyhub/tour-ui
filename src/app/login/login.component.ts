@@ -28,10 +28,6 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.notifyService.successMsg(
-      "Password is successfully changed.",
-      "Password Change !!"
-    );
     this.rememberMe = this.cookies.check("username");
     this.loginForm = this.formBuilder.group({
       username: ["", [Validators.required, Validators.minLength(5)]],
@@ -62,18 +58,23 @@ export class LoginComponent implements OnInit {
           if (response != undefined) {
             this.adminService.setUpUserData(response);
             if (this.loginForm.value.rememberMe) {
-              this.cookies.set("username", this.loginForm.value.username);
-              this.cookies.set("password", this.loginForm.value.password);
+              this.cookies.set("username", this.loginForm.value.username,30);
+              this.cookies.set("password", this.loginForm.value.password,30);
             }
             else{
               this.cookies.delete("username");
               this.cookies.delete("password");
             }
             this.router.navigate(["/site"]);
-          } else {
-            this.router.navigate([""]);
-          }
-        });
+          } 
+        },
+        (error) =>{
+          this.notifyService.errorMsg(
+            "Username or Pasword is Invalid.",
+            "Error !!");
+          this.router.navigate([""]);
+        }
+        );
     }
   }
 }
