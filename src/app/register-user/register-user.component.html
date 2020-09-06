@@ -25,6 +25,7 @@
             class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
             placeholder="Enter username here"
+            (change)="checkUserName()"
           />
           <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
             <div *ngIf="f.username.errors.required">Username is required</div>
@@ -70,9 +71,6 @@
             placeholder="Enter Confirm Password here"
             (change)="passwordCheck()"
           />
-          <div *ngIf="passwordMismatch">
-            Confirm Password should be same as Password
-          </div>
           <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
             <div *ngIf="f.password2.errors.required">Password is required</div>
             <div *ngIf="f.password2.errors.minlength">
@@ -94,6 +92,7 @@
             class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
             placeholder="Enter email here"
+            (change)="checkEmail()"
           />
           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
             <div *ngIf="f.email.errors.required">Email is required</div>

@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { ServiceConstants } from "./service.constants";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { RegisterUserType } from "./../register-user/registerUserType";
+import { CheckUserType } from "./../register-user/CheckUser";
 import { Observable } from "rxjs";
 @Injectable({
   providedIn: "root",
@@ -24,6 +25,15 @@ export class RegisterUserService {
     };
     user.password = null;
     return this.http.post<any>(ServiceConstants.updateUserUrl, user, {
+      headers,
+    });
+  }
+
+  public checkNewUser(check: CheckUserType): Observable<any> {
+    const headers = {
+      Authorization: "",
+    };
+    return this.http.post<any>(ServiceConstants.checknewuserUrl, check, {
       headers,
     });
   }

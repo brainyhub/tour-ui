@@ -29,4 +29,6 @@ export class ServiceConstants {
     ServiceConstants.appContext + "tour/adminService/permissions";
   public static permissionAddUrl: string =
     ServiceConstants.appContext + "tour/adminService/rolesPermission";
+  public static checknewuserUrl: string =
+    ServiceConstants.appContext + "tour/adminService/user/validate/user";
 }
