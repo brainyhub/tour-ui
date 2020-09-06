@@ -27,15 +27,9 @@ export class CompanyComponent implements OnInit {
   isDebugMode=false;
   isLogin:Boolean=false;
 
+  
   addcompany:FormGroup;
 
-      address :  FormControl;
-      email :  FormControl
-      gstNo :  FormControl;
-      isActive : FormControl;
-      phone :  FormControl;
-      title :  FormControl;
-      website :  FormControl;
       
 constructor(private http: HttpClient,private router: Router, private formBuilder : FormBuilder, private companyService:CompanyService,private route:ActivatedRoute) { 
     console.log("constructor CompanyComponent");
@@ -50,25 +44,17 @@ constructor(private http: HttpClient,private router: Router, private formBuilder
       totalItems: 0
     };
 
-    this.addcompany = this.formBuilder.group({
-      address : new FormControl(),
-      email : new FormControl(),
-      gstNo : new FormControl(),
-      isActive : new FormControl(),
-      phone : new FormControl(),
-      title : new FormControl(),
-      website : new FormControl(),
-    });
+    
 
     this.route.queryParams.subscribe(params => this.config.currentPage = params['page'] ? params['page'] : 1);
     this.createCompany={
-        "address": "Bhaga",
-        "email": "a@anuj.com",
-        "gstNo": "16546153",
-        "isActive": "yes",
-        "phone": "89468498",
-        "title": "THE ANUJ",
-        "website": "aaa.com"
+        address: "",
+        email: "",
+        gstNo: "",
+        isActive: "",
+        phone: "",
+        title: "",
+        website: ""
     };
   }
 
@@ -79,6 +65,20 @@ constructor(private http: HttpClient,private router: Router, private formBuilder
       this.companyResponse=data;
     })
   } 
+
+
+  modifyRecord(company:CompanyResponseType){
+    console.log("modifyRecord");
+    console.log(company);
+    this.currentUpdateCompany.address = company.address;
+    this.currentUpdateCompany.email=company.email;
+    this.currentUpdateCompany.gstNo=company.gstNo;
+    this.currentUpdateCompany.isActive=company.isActive;
+    this.currentUpdateCompany.phone=company.phone;
+    this.currentUpdateCompany.title=company.title;
+    this.currentUpdateCompany.website=company.website;
+  }
+
 
   createNewCompany(){
     console.log(this.addcompany.value);

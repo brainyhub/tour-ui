@@ -30,13 +30,12 @@
                         <span class="input-group-addon">
                             <i class="icon_key_alt"></i>
                         </span>
-                        <input [type]="hide ?'text':'password'" formControlName="password" [(ngModel)]="loginRequest.password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <input [type]="text" formControlName="password" [(ngModel)]="loginRequest.password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                             <div *ngIf="f.password.errors.required">Password is required</div>
                             <div *ngIf="f.password.errors.minlength">Password must be 5 characters long, we need another {{f.password.errors.minlength.requiredLength - f.password.errors.minlength.actualLength}} characters </div>
                         </div> 
                     </div>
-                    <span><i class="icon_mat" (click)="hide = !hide">{{hide ? "visibility_off":"visibility"}}</i></span>
                     <div class="help-block"></div>
                 </div>
                 <div class="row">
@@ -55,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <button (click)="onSubmit()" class="btn btn-primary btn-lg btn-block" name="login-button">login</button>
+            <button [disabled]="loginForm.invalid" (click)="onSubmit()" class="btn btn-primary btn-lg btn-block" name="login-button">login</button>
             <div routerLink="/registerUser" class="btn btn-primary btn-lg btn-block" name="registerUser-button">Create New User</div>
         </form>
     </div>
