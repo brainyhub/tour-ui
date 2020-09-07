@@ -18,7 +18,6 @@ export class UserProfileComponent implements OnInit {
   updateUser: UpdateUser = new UpdateUser();
   updationForm: FormGroup;
   submitted = false;
-  passwordMismatch: Boolean = false;
   setEditMode(flg: Boolean) {
     this.editMode = flg;
   }
@@ -30,8 +29,6 @@ export class UserProfileComponent implements OnInit {
 
     this.updationForm = this.fBuilder.group({
       email: ["", Validators.required],
-      password1: ["", [Validators.required, Validators.minLength(8)]],
-      password2: ["", Validators.required],
       phone: ["", [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       username: ["", Validators.required]
     });
@@ -40,30 +37,19 @@ export class UserProfileComponent implements OnInit {
     this.updateUser.username = this.user.username;
     this.updateUser.email = this.user.email;
     this.updateUser.phone = this.user.phone;
-    //this.updateUser.password = this.user.password;
   }
   setUserUpdatedData() {
     this.user.username = this.updateUser.username;
     this.user.email = this.updateUser.email;
     this.user.phone = this.updateUser.phone;
-   // this.user.password = this.updateUser.password;
     sessionStorage.setItem("user-info", JSON.stringify(this.user));
   }
   get f() {
     return this.updationForm.controls;
   }
-  passwordCheck() {
-    if (this.updateUser.password != this.updationForm.value.password2) {
-      this.passwordMismatch = true;
-      this.updationForm.controls["password2"].setErrors({ incorrect: true });
-    } else {
-      this.passwordMismatch = false;
-      this.updationForm.controls["password2"].setErrors(null);
-    }
-  }
   updateUserProfileToDb() {
     this.submitted = true;
-    if(this.updationForm.valid && !this.passwordMismatch){
+    if(this.updationForm.valid){
       this.userService.updateUser(this.updateUser).subscribe((data) => {
         console.log("Updated");
         this.setUserUpdatedData();

@@ -18,10 +18,6 @@
     <input type="text" value="{{ user.phone }}" class="form-control" disabled/>
   </div>
   <div class="form-group">
-    <label style="font-size: 15px; color:#000000">Password :</label><br>
-    <input type="text" value="{{ user.password }}" class="form-control" disabled/>
-  </div>
-  <div class="form-group">
     <button *ngIf="!editMode" (click)="setEditMode(true)" class="btn btn-primary">Edit</button>
   </div>
 </div>
@@ -72,33 +68,6 @@
           }}
           less digits.
         </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="password1" style="font-size: 15px; color:#000000">Password :</label>
-      <input [(ngModel)]="updateUser.password" [type]="hide ? 'password' : 'text'" formControlName="password1"
-             class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password1.errors }"/>
-      <div *ngIf="submitted && f.password1.errors" class="invalid-feedback">
-        <div *ngIf="f.password1.errors.required">Password is required</div>
-        <div *ngIf="f.password1.errors.minlength">
-          Password must be 8 characters long.
-          {{
-            f.password1.errors.minlength.requiredLength -
-              f.password1.errors.minlength.actualLength
-          }}
-         more characters.
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="password2" style="font-size: 15px; color:#000000">Confirm Password :</label>
-      <input [type]="hide1 ? 'password' : 'text'" formControlName="password2" class="form-control"
-             [ngClass]="{ 'is-invalid': submitted && f.password2.errors }" (change)="passwordCheck()"/>
-      <div *ngIf="passwordMismatch">
-        Confirm Password, should be same as Password
-      </div>
-      <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
-        <div *ngIf="f.password2.errors.required">Password is required</div>
       </div>
     </div>
   </div>
