@@ -10,7 +10,6 @@ import { FormBuilder, FormGroup, Validators, FormControl} from "@angular/forms";
   styleUrls: ["./user-profile.component.css"],
 })
 export class UserProfileComponent implements OnInit {
-  //  editUser: EditUser;
   constructor(private userService: RegisterUserService, private notifyMsg: NotifyService, private fBuilder: FormBuilder) {}
   editMode: Boolean = false;
   isDebugMode: Boolean = false;
