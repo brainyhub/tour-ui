@@ -5,7 +5,6 @@
     </div>
   </div>
   <hr>
-  <div *ngIf="recordUpdated"><h5 style="color:#000000">Record is updated.</h5></div>
   <div class="form-group">
     <label for="uName" style="font-size: 15px; color:#000000">Username :</label>
     <input type="text" value="{{ user.username }}" class="form-control" disabled/>
@@ -18,8 +17,15 @@
     <label style="font-size: 15px; color:#000000">Phone :</label><br>
     <input type="text" value="{{ user.phone }}" class="form-control" disabled/>
   </div>
-  <p *ngIf="isDebugMode">{{ user | json }}</p>
+  <div class="form-group">
+    <label style="font-size: 15px; color:#000000">Password :</label><br>
+    <input type="text" value="{{ user.password }}" class="form-control" disabled/>
+  </div>
+  <div class="form-group">
+    <button *ngIf="!editMode" (click)="setEditMode(true)" class="btn btn-primary">Edit</button>
+  </div>
 </div>
+
 
 <div *ngIf="editMode" style="margin-top: 110px">
   <div class="container">
@@ -28,28 +34,77 @@
     </div>
   </div>
   <hr>
+<form [formGroup]="updationForm" (ngSubmit)="updateUserProfileToDb()">
+  <div class="registerForm-user">
     <div class="form-group">
-      <label for="userName" style="font-size: 15px; color:#000000" >Username :</label>
-      <input type="text" [(ngModel)]="updateUser.username" name="username" class="form-control"/>
+      <label for="username" style="font-size: 15px; color:#000000">Username :</label>
+      <input [(ngModel)]="updateUser.username" type="text" formControlName="username" class="form-control" disabled/>
+      
     </div>
     <div class="form-group">
-      <label for="email" style="font-size: 15px; color:#000000"> Email :</label>
-      <input type="text" [(ngModel)]="updateUser.email" name="email" class="form-control" />
+      <label for="email" style="font-size: 15px; color:#000000">Email :</label>
+      <input type="text" [(ngModel)]="updateUser.email"  formControlName="email" class="form-control"
+             [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+        <div *ngIf="f.email.errors.email">Enter valid email address</div>
+      </div>
     </div>
     <div class="form-group">
       <label for="phone" style="font-size: 15px; color:#000000">Phone :</label>
-      <input type="text" [(ngModel)]="updateUser.phone" name="phone" class="form-control"/>
+      <input [(ngModel)]="updateUser.phone" [type]="hide ? 'password' : 'number'" formControlName="phone" class="form-control"
+             [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"/>
+      <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+        <div *ngIf="f.phone.errors.required">Phone is required</div>
+        <div *ngIf="f.phone.errors.minlength">
+          Phone number should be 10 digits.
+          {{
+            f.phone.errors.minlength.requiredLength -
+              f.phone.errors.minlength.actualLength
+          }}
+          more digits.
+        </div>
+        <div *ngIf="f.phone.errors.maxlength">
+          Phone number should be 10 digits.
+          {{
+            f.phone.errors.maxlength.actualLength -
+              f.phone.errors.maxlength.requiredLength 
+          }}
+          less digits.
+        </div>
+      </div>
     </div>
     <div class="form-group">
-      <label for="pwd" style="font-size: 15px; color:#000000">Password :</label>
-      <input type="text" [(ngModel)]="updateUser.password" name="password" class="form-control"/>
+      <label for="password1" style="font-size: 15px; color:#000000">Password :</label>
+      <input [(ngModel)]="updateUser.password" [type]="hide ? 'password' : 'text'" formControlName="password1"
+             class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password1.errors }"/>
+      <div *ngIf="submitted && f.password1.errors" class="invalid-feedback">
+        <div *ngIf="f.password1.errors.required">Password is required</div>
+        <div *ngIf="f.password1.errors.minlength">
+          Password must be 8 characters long.
+          {{
+            f.password1.errors.minlength.requiredLength -
+              f.password1.errors.minlength.actualLength
+          }}
+         more characters.
+        </div>
+      </div>
     </div>
     <div class="form-group">
-      <button (click)="updateUserProfileToDb()" class="btn btn-primary">Update</button> &nbsp; &nbsp;
-    <p *ngIf="isDebugMode">{{ updateUser | json }}</p>   
-    <button *ngIf="editMode" (click)="setEditMode(false)" class="btn btn-primary">View</button>
+      <label for="password2" style="font-size: 15px; color:#000000">Confirm Password :</label>
+      <input [type]="hide1 ? 'password' : 'text'" formControlName="password2" class="form-control"
+             [ngClass]="{ 'is-invalid': submitted && f.password2.errors }" (change)="passwordCheck()"/>
+      <div *ngIf="passwordMismatch">
+        Confirm Password, should be same as Password
+      </div>
+      <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
+        <div *ngIf="f.password2.errors.required">Password is required</div>
+      </div>
     </div>
-</div>
-<div class="form-group">
-  <button *ngIf="!editMode" (click)="setEditMode(true)" class="btn btn-primary">Edit</button>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" name="login-button">Update</button> &nbsp; &nbsp; &nbsp;
+    <button *ngIf="editMode" (click)="setEditMode(false)" class="btn btn-primary">Cancel</button>
+  </div>
+</form>
 </div>
