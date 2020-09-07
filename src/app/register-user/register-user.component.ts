@@ -25,6 +25,7 @@ export class RegisterUserComponent implements OnInit {
   email: string;
   passwordMismatch: Boolean = false;
   checkusername: Boolean = false;
+  checkemail: Boolean = false;
   phone: number;
   newroles = new Object();
   roles = [];
@@ -55,7 +56,6 @@ export class RegisterUserComponent implements OnInit {
   passwordCheck() {
     if (this.registerUser.password != this.registerForm.value.password2) {
       this.passwordMismatch = true;
-      this.notifyService.warningMsg("Confirm Password should be same as Password","Mismatch!!");
       this.registerForm.controls["password2"].setErrors({ incorrect: true });
     } else {
       this.passwordMismatch = false;
@@ -70,10 +70,11 @@ export class RegisterUserComponent implements OnInit {
         (response) => {
           if(response.success)
           {
+            this.checkusername = true;
             this.registerForm.controls["username"].setErrors({ incorrect: true });
-            this.notifyService.errorMsg("username is already available","!!Errror");
           }
           else{
+            this.checkusername = false;
             this.registerForm.controls["username"].setErrors(null);
           }
         }
@@ -86,11 +87,12 @@ export class RegisterUserComponent implements OnInit {
       (response) => {
         if(response.success)
         {
+          this.checkemail=true;
           this.registerForm.controls["email"].setErrors({ incorrect: true });
-          this.notifyService.errorMsg("Email is available","!!Success");
           
         }
         else{
+          this.checkemail= false;
           this.registerForm.controls["email"].setErrors(null);
         }
       }
@@ -102,7 +104,7 @@ export class RegisterUserComponent implements OnInit {
   }
   onFormSubmit() {
     this.submitted = true;
-    if (!this.registerForm.invalid && !this.passwordMismatch && this.checkusername) {
+    if (!this.registerForm.invalid ) {
       this.registerUserService.registerNewUser(this.registerUser).subscribe(
         (response) => {
           console.log("success", response)

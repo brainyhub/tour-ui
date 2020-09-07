@@ -39,7 +39,6 @@ export class ChangePasswordComponent implements OnInit {
   passwordCheck() {
     if (this.changePassword.userPassword != this.changeForm.value.password2) {
       this.passwordMismatch = true;
-      this.notifyService.warningMsg("Confirm Password should be same as Password","Mismatch!!");
       this.changeForm.controls["password2"].setErrors({ incorrect: true });
     } else {
       this.passwordMismatch = false;
