@@ -11,17 +11,24 @@ export class ServiceConstants {
     ServiceConstants.appContext + "tour/api/ver01/tripservice/trip";
   public static registerUserUrl: string =
     ServiceConstants.appContext + "tour/adminService/public/registerUser";
-    public static updateUserUrl: string =
+  public static updateUserUrl: string =
     ServiceConstants.appContext + "tour/adminService/user";
-    public static forgotPasswordUrl: string =
+  public static forgotPasswordUrl: string =
     ServiceConstants.appContext + "tour/adminService/forgotpassword";
-    public static changePasswordUrl: string =
+  public static changePasswordUrl: string =
     ServiceConstants.appContext + "tour/adminService/forgotpasswordprocess";
-    public static companyReportUrl: string    = 
+  public static companyReportUrl: string =
     ServiceConstants.appContext + "tour/api/ver01/vvt/company";
-    public static newCompanyUrl: string       = 
+  public static newCompanyUrl: string =
     ServiceConstants.appContext + "tour/api/ver01/vvt/company";
-    public static updateCompanyUrl: string    = 
+  public static updateCompanyUrl: string =
     ServiceConstants.appContext + "tour/api/ver01/vvt/company/update";
-
+  public static rolesUrl: string =
+    ServiceConstants.appContext + "tour/adminService/allRoles";
+  public static permissionUrl: string =
+    ServiceConstants.appContext + "tour/adminService/permissions";
+  public static permissionAddUrl: string =
+    ServiceConstants.appContext + "tour/adminService/rolesPermission";
+  public static checknewuserUrl: string =
+    ServiceConstants.appContext + "tour/adminService/user/validate/user";
 }

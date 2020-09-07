@@ -16,8 +16,7 @@ import { ProgressWidgetComponent } from "./progress-widget/progress-widget.compo
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { SearchComponent } from "./search/search.component";
 import { EventBoardComponent } from "./event-board/event-board.component";
-import { SearchTableComponent } from "./search-table/search-table.component";
-import { SearchPipe } from "./search-table/SearchPipe";
+
 import { HttpClientModule } from "@angular/common/http";
 import { NgxPaginationModule } from "ngx-pagination";
 import { DashboardComponent } from "./dashboard/dashboard.component";
@@ -65,8 +64,7 @@ import { ToastrService } from "ngx-toastr";
     UserProfileComponent,
     SearchComponent,
     EventBoardComponent,
-    SearchTableComponent,
-    SearchPipe,
+
     DashboardComponent,
     HomepageComponent,
     TripComponent,

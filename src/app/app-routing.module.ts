@@ -1,3 +1,4 @@
+import { InvoicesComponent } from './invoices/invoices.component';
 import { NotificationComponent } from "./notification/notification.component";
 import { StatusComponent } from "./status/status.component";
 import { TaxComponent } from "./tax/tax.component";
@@ -34,6 +35,7 @@ const routes: Routes = [
       { path: "", component: DashboardComponent },
       { path: "dashboard", component: DashboardComponent },
       { path: "role", component: RoleComponent },
+      { path: "invoice", component: InvoicesComponent },
       { path: "permissions", component: PermisionComponent },
       { path: "assign-role", component: AssignRoleComponent },
       { path: "assign-permission", component: AssignPermissionComponent },
@@ -63,4 +65,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
