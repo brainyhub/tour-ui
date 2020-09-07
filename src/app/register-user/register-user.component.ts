@@ -64,6 +64,7 @@ export class RegisterUserComponent implements OnInit {
   }
   checkUserName(){
       this.checkUser.userName=this.registerForm.value.username;
+      this.checkUser.email=null;
       console.log(this.checkUser);
       this.registerUserService.checkNewUser(this.checkUser).subscribe(
         (response) => {
@@ -73,24 +74,23 @@ export class RegisterUserComponent implements OnInit {
             this.notifyService.errorMsg("username is already available","!!Errror");
           }
           else{
-            this.notifyService.successMsg("username is not available yet you can use this","!!Success");
             this.registerForm.controls["username"].setErrors(null);
           }
         }
     )
   }
   checkEmail(){
-    this.checkUser.userName=this.registerForm.value.email;
+    this.checkUser.email=this.registerForm.value.email;
+    this.checkUser.userName=null;
     this.registerUserService.checkNewUser(this.checkUser).subscribe(
       (response) => {
         if(response.success)
         {
           this.registerForm.controls["email"].setErrors({ incorrect: true });
-          this.notifyService.successMsg("username is available","!!Success");
+          this.notifyService.errorMsg("Email is available","!!Success");
           
         }
         else{
-          this.notifyService.errorMsg("User already exist with email. Please user forgot password to get password or login","!!Errror");
           this.registerForm.controls["email"].setErrors(null);
         }
       }
