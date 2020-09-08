@@ -1,14 +1,17 @@
 export interface PackageType {
-    companyId: Number,
-    extraHrRate: Number,
-    extraKmRate: Number,
-    kmPerRate: Number,
-    packageFor: Number,
-    packageId: Number,
-    packageSpecific: Number,
-    packageTimeing: string,
-    packageTitle: string,
+    id: Number,
     packageType: Number,
-    rate: Number,
-    vehicleType: Number
+    packageTypeDesc: String,
+	packageFor: Number,
+    packageForDesc: String,
+    packageTitle: String,
+    vehicleType: Number,
+    vehicleTypeDesc: String,
+    packageTimeing: String,
+    companyId: Number,
+    companyDesc: String,
+    extraHrRate: Number,
+    kmPerRate: Number,
+    extraKmRate: Number,
+    rate: Number
 }
