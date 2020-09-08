@@ -1,10 +1,23 @@
-<div style="margin-top: 110px">
-    <table class="table table-striped table-hover table-bordered">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Details</th>
-          </tr>
-        </thead>
-      </table>
+<div style="margin-top: 80px">
+  <div class="container">
+    <div class="row justify-content-center">
+      <h4 style="color:#000000">Role Details</h4>
+    </div>
   </div>
+  <hr>
+  <table class="table table-striped table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Role ID</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- *ngFor="let data of Role" -->
+      <tr>
+        <td>{{ role.id }}</td>     
+        <td>{{ role.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

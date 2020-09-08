@@ -6,6 +6,9 @@ export class Role implements RoleType {
   permissions: Permission[];
   selected: Boolean = false;
   constructor() {
+    this.id = 0;
+    this.name = "";
+    this.permissions = [];
     this.selected = false;
   }
 }
