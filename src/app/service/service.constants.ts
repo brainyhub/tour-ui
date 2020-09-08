@@ -34,6 +34,6 @@ export class ServiceConstants {
   public static packageUrl: string =
     ServiceConstants.appContext + "tour/api/ver01/company/packages";
   public static updatePackageUrl: string =
-    ServiceConstants.appContext + "tour//api/ver01/company/update";
+    ServiceConstants.appContext + "tour/api/ver01/company/packages/update";
  
 }
