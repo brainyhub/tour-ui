@@ -23,11 +23,11 @@
             type="text"
             formControlName="username"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+            [ngClass]="{ 'is-invalid': f.username.touched && f.username.errors }"
             placeholder="Enter username here"
             (change)="checkUserName()"
           />
-          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+          <div *ngIf="f.password1.touched && f.username.errors" class="invalid-feedback">
             <div *ngIf="f.username.errors.required">Username is required</div>
             <div *ngIf="f.username.errors.minlength">
               Username must be 5 characters long, we need another
@@ -36,6 +36,9 @@
                   f.username.errors.minlength.actualLength
               }}
               characters
+            </div>
+            <div *ngIf="checkusername">
+              Username not available
             </div>
           </div>
         </div>
@@ -46,17 +49,18 @@
             [type]="text"
             formControlName="password1"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.password1.errors }"
+            [ngClass]="{ 'is-invalid': f.password1.touched && f.password1.errors }"
             placeholder="Enter Password here"
+            (change)="passwordCheck()"
           />
-          <div *ngIf="submitted && f.password1.errors" class="invalid-feedback">
+          <div *ngIf="f.password1.touched && f.password1.errors" class="invalid-feedback">
             <div *ngIf="f.password1.errors.required">Password is required</div>
             <div *ngIf="f.password1.errors.minlength">
               Password must be 5 characters long, we need another
               {{
                 f.password1.errors.minlength.requiredLength -
                   f.password1.errors.minlength.actualLength
-              }}
+              }} 
               characters
             </div>
           </div>
@@ -67,11 +71,14 @@
             [type]="text"
             formControlName="password2"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.password2.errors }"
+            [ngClass]="{ 'is-invalid': f.password2.touched && f.password2.errors }"
             placeholder="Enter Confirm Password here"
             (change)="passwordCheck()"
           />
-          <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
+          <div *ngIf="passwordMismatch">
+            Confirm Password should be same as Password
+          </div>
+          <div *ngIf="f.password2.touched && f.password2.errors" class="invalid-feedback">
             <div *ngIf="f.password2.errors.required">Password is required</div>
             <div *ngIf="f.password2.errors.minlength">
               Password must be 5 characters long, we need another
@@ -90,11 +97,14 @@
             [(ngModel)]="registerUser.email"
             formControlName="email"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+            [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }"
             placeholder="Enter email here"
             (change)="checkEmail()"
           />
-          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="checkemail">
+            User already exist with this email. Please forgot password or login
+          </div>
+          <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
             <div *ngIf="f.email.errors.required">Email is required</div>
             <div *ngIf="f.email.errors.email">Enter valid email address</div>
           </div>
@@ -106,10 +116,10 @@
             type="number"
             formControlName="phone"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"
+            [ngClass]="{ 'is-invalid': f.phone.touched && f.phone.errors }"
             placeholder="Enter Phone here"
           />
-          <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+          <div *ngIf="f.phone.touched && f.phone.errors" class="invalid-feedback">
             <div *ngIf="f.phone.errors.required">Phone is required</div>
           </div>
         </div>

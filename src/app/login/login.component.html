@@ -16,8 +16,8 @@
                         <span class="input-group-addon">
                             <i class="icon_profile"></i>
                         </span>
-                        <input type="text" formControlName="username" [(ngModel)]="loginRequest.username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <input type="text" formControlName="username" [(ngModel)]="loginRequest.username" class="form-control" [ngClass]="{ 'is-invalid': f.username.touched && f.username.errors }" />
+                        <div *ngIf="f.username.touched && f.username.errors" class="invalid-feedback">
                             <div *ngIf="f.username.errors.required">Username is required</div>
                             <div *ngIf="f.username.errors.minlength">Username or Email must be 5 characters long, we need another {{f.username.errors.minlength.requiredLength - f.username.errors.minlength.actualLength}} characters </div>
                         </div>
@@ -30,8 +30,8 @@
                         <span class="input-group-addon">
                             <i class="icon_key_alt"></i>
                         </span>
-                        <input [type]="text" formControlName="password" [(ngModel)]="loginRequest.password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <input [type]="text" formControlName="password" [(ngModel)]="loginRequest.password" class="form-control" [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }" />
+                        <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback">
                             <div *ngIf="f.password.errors.required">Password is required</div>
                             <div *ngIf="f.password.errors.minlength">Password must be 5 characters long, we need another {{f.password.errors.minlength.requiredLength - f.password.errors.minlength.actualLength}} characters </div>
                         </div> 
