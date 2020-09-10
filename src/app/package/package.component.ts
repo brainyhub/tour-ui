@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { PackageType } from "./packageType";
 import { PackageEditType } from "./packageEditType";
 import { PackageService } from "./../service/package.service";
+import { deletePackageType } from './deletePackageType';
 @Component({
   selector: 'app-package',
   templateUrl: './package.component.html',
@@ -11,6 +12,8 @@ import { PackageService } from "./../service/package.service";
 export class PackageComponent implements OnInit {
   packagetype:PackageType;
   modifypackage:PackageEditType;
+  deletepackage:PackageType;
+  deleteType:deletePackageType;
   allpackage:PackageType[];
   config: any;
   constructor(
@@ -44,7 +47,24 @@ export class PackageComponent implements OnInit {
       rate: 0,
       packageSpecific:0
     }
-    
+    this.deletepackage = {
+      id: 0,
+      packageType: 0,
+      packageTypeDesc: "",
+      packageFor: 0,
+      packageForDesc: "",
+      packageTitle: "",
+      vehicleType: 0,
+      vehicleTypeDesc: "",
+      packageTimeing: "",
+      companyId: 0,
+      companyDesc: "",
+      extraHrRate: 0,
+      kmPerRate: 0,
+      extraKmRate: 0,
+      rate: 0
+    }
+    this.deleteType={id:0};
   }
   modifyRecord( modify :PackageType){
     console.log(modify);
@@ -60,6 +80,23 @@ export class PackageComponent implements OnInit {
     this.modifypackage.extraKmRate=modify.extraKmRate;
     this.modifypackage.rate=modify.rate;
     this.modifypackage.packageSpecific=modify.packageType;
+  }
+  deleteRecord(recodrs : PackageType){
+    this.deleteType.id=this.deletepackage.id=recodrs.id;
+    this.deletepackage.packageType=recodrs.packageType;
+    this.deletepackage.packageTypeDesc=recodrs.packageForDesc;
+	  this.deletepackage.packageFor=recodrs.packageFor;
+    this.deletepackage.packageForDesc=recodrs.packageForDesc;
+    this.deletepackage.packageTitle=recodrs.packageTitle
+    this.deletepackage.vehicleType=recodrs.vehicleType;
+    this.deletepackage.vehicleTypeDesc=recodrs.vehicleTypeDesc;
+    this.deletepackage.packageTimeing=recodrs.packageTimeing;
+    this.deletepackage.companyId=recodrs.companyId;
+    this.deletepackage.companyDesc=recodrs.companyDesc;
+    this.deletepackage.extraHrRate=recodrs.extraHrRate;
+    this.deletepackage.kmPerRate=recodrs.kmPerRate;
+    this.deletepackage.extraKmRate=recodrs.extraKmRate;
+    this.deletepackage.rate=recodrs.rate;
   }
   pageChange(newPage: number) {
     this.router.navigate(["site/package"], { queryParams: { page: newPage } });
@@ -87,6 +124,15 @@ export class PackageComponent implements OnInit {
     },
     (error) => console.log("Error!", error)
     );
+    this.getpackageRecords();
+  }
+  deletePackageToDb(){
+    this.packageService.deletePackage(this.deleteType).subscribe((response)=>{
+      console.log("success",response);
+    },
+    (error)=>{
+      console.log("Error",error);
+    });
     this.getpackageRecords();
   }
 }

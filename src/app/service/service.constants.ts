@@ -41,5 +41,8 @@ export class ServiceConstants {
     ServiceConstants.appContext + "tour/api/ver01/company/packages";
   public static updatePackageUrl: string =
     ServiceConstants.appContext + "tour/api/ver01/company/packages/update";
+  public static deletePackageUrl: string =
+    ServiceConstants.appContext + "tour/api/ver01/company/department/delete";
+  
  
 }

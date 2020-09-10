@@ -5,6 +5,8 @@ import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
+import { deletePackageType } from "../package/deletePackageType";
+
 @Injectable({
   providedIn: "root",
 })
@@ -33,6 +35,13 @@ export class PackageService {
       Authorization: "Bearer " + sessionStorage.getItem("token"),
     };
     return this.http.post<any>(ServiceConstants.updatePackageUrl, updatePackage,{ headers }
+    );
+  }
+  public deletePackage(deletepackage: deletePackageType): Observable<any> {
+    const headers = {
+      Authorization: "Bearer " + sessionStorage.getItem("token"),
+    };
+    return this.http.post<any>(ServiceConstants.deletePackageUrl, deletepackage,{ headers }
     );
   }
 }
