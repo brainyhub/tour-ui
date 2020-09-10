@@ -1,5 +1,5 @@
 export interface CompanyResponseType{
-
+    "id":string
     "address": string,
     "email": string,
     "gstNo": string,
@@ -7,6 +7,7 @@ export interface CompanyResponseType{
     "phone": string,
     "title": string,
     "website": string
+    "companyTaxs": CompanyTax[],
   }
   
   /*
