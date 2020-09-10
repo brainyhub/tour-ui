@@ -5,6 +5,7 @@ import { ReportService } from "../service/report.service";
 import { MenuService } from "../service/menu.service";
 import { Component, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
@@ -20,9 +21,15 @@ export class DashboardComponent implements OnInit {
   applicableReports = [];
   diplayRecordCount: Number = 2;
   tripResponse: TripResponseType[] = [];
+  dtOptions: any = {};
 
-  constructor(private http: HttpClient, private tripService: TripService) {}
+  constructor(private http: HttpClient, private tripService: TripService) { }
   ngOnInit() {
+    this.dtOptions = {
+      dom: 'Bfrtip',
+      buttons: ['print', 'excel', 'pdf']
+
+    };
     this.getPreviousDayReport();
   }
   getTodayReport() {
@@ -74,5 +81,5 @@ export class DashboardComponent implements OnInit {
       this.tripResponse = data;
     });
   }
-  reportClick(url) {}
+  reportClick(url) { }
 }

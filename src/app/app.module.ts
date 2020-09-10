@@ -48,7 +48,8 @@ import { CookieService } from "ngx-cookie-service";
 import { ChangePasswordComponent } from "./change-password/change-password.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
-import { ToastrService } from "ngx-toastr";
+import { DataTablesModule } from 'angular-datatables';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,9 +100,10 @@ import { ToastrService } from "ngx-toastr";
     NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
+    DataTablesModule,
     ToastrModule.forRoot(),
   ],
   providers: [CookieService, NotifyService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
