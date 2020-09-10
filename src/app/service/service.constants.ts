@@ -24,9 +24,15 @@ export class ServiceConstants {
   public static updateCompanyUrl: string =
     ServiceConstants.appContext + "tour/api/ver01/vvt/company/update";
   public static rolesUrl: string =
-    ServiceConstants.appContext + "tour/adminService/allRoles";
+    ServiceConstants.appContext + "tour/adminService/roles";
+    public static deleteRolesUrl: string =
+    ServiceConstants.appContext + "tour/adminService/roles/delete";
   public static permissionUrl: string =
     ServiceConstants.appContext + "tour/adminService/permissions";
+    public static updatePermissionUrl: string =
+    ServiceConstants.appContext + "tour/adminService/permissions/update";
+    public static deletePermissionUrl: string =
+    ServiceConstants.appContext + "tour/adminService/permissions/delete";
   public static permissionAddUrl: string =
     ServiceConstants.appContext + "tour/adminService/rolesPermission";
   public static checknewuserUrl: string =

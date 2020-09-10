@@ -1,4 +1,4 @@
-import { Role } from "./../role/Role";
+import { RoleType } from "./../role/RoleType";
 import { ServiceConstants } from "./service.constants";
 import { HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
@@ -20,13 +20,13 @@ export class RoleService {
     };
     return this.http.get<any>(ServiceConstants.rolesUrl, header);
   }
-  public savePermissions(updatePermission: Role[]): Observable<any> {
+  public deletePermissions(updateRole: RoleType[]): Observable<any> {
     const headers = {
       Authorization: "Bearer " + sessionStorage.getItem("token"),
     };
     return this.http.post<any>(
-      ServiceConstants.permissionAddUrl,
-      { rolesPermissions: updatePermission },
+      ServiceConstants.deleteRolesUrl,
+      { rolesPermissions: updateRole },
       {
         headers,
       }
