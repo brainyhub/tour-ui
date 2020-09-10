@@ -24,14 +24,14 @@ export class ServiceConstants {
   public static updateCompanyUrl: string =
     ServiceConstants.appContext + "tour/api/ver01/vvt/company/update";
   public static rolesUrl: string =
-    ServiceConstants.appContext + "tour/adminService/roles";
-    public static deleteRolesUrl: string =
+    ServiceConstants.appContext + "tour/adminService/allRoles";
+  public static deleteRolesUrl: string =
     ServiceConstants.appContext + "tour/adminService/roles/delete";
   public static permissionUrl: string =
     ServiceConstants.appContext + "tour/adminService/permissions";
-    public static updatePermissionUrl: string =
+  public static updatePermissionUrl: string =
     ServiceConstants.appContext + "tour/adminService/permissions/update";
-    public static deletePermissionUrl: string =
+  public static deletePermissionUrl: string =
     ServiceConstants.appContext + "tour/adminService/permissions/delete";
   public static permissionAddUrl: string =
     ServiceConstants.appContext + "tour/adminService/rolesPermission";
@@ -43,15 +43,14 @@ export class ServiceConstants {
     ServiceConstants.appContext + "tour/api/ver01/company/packages/update";
   public static deletePackageUrl: string =
     ServiceConstants.appContext + "tour/api/ver01/company/department/delete";
-    public static getInvoicesUrl: string =
+  public static getInvoicesUrl: string =
     ServiceConstants.appContext + "tour/api/ver01/invoice-service/invoice";
   public static newInvoicesUrl: string =
     ServiceConstants.appContext + "tour/api/ver01/invoice-service/invoice";
   public static updateInvoicesUrl: string =
     ServiceConstants.appContext + "tour/api/ver01/invoice-service/invoice/update";
   public static deleteInvoicesUrl: string =
-      ServiceConstants.appContext + "tour/api/ver01/invoice-service/invoice/delete";
-        
- 
- 
+    ServiceConstants.appContext + "tour/api/ver01/invoice-service/invoice/delete";
+  public static getRolesUrl: string =
+    ServiceConstants.appContext + "tour/adminService/roles";
 }

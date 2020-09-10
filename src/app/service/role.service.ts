@@ -12,6 +12,15 @@ import { Injectable } from "@angular/core";
 export class RoleService {
   constructor(private http: HttpClient) { }
 
+  public getAllRolesWithoutPermission(): Observable<any> {
+    var header = {
+      headers: new HttpHeaders().set(
+        "Authorization",
+        "Bearer " + sessionStorage.getItem("token")
+      ),
+    };
+    return this.http.get<any>(ServiceConstants.getRolesUrl, header);
+  }
   public getAllRoles(): Observable<any> {
     var header = {
       headers: new HttpHeaders().set(
@@ -33,6 +42,7 @@ export class RoleService {
       }
     );
   }
+
   public deletePermissions(updateRole: RoleType[]): Observable<any> {
     const headers = {
       Authorization: "Bearer " + sessionStorage.getItem("token"),

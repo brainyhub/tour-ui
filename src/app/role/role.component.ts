@@ -11,33 +11,29 @@ import { Permission } from '../permision/permission';
   styleUrls: ['./role.component.css']
 })
 export class RoleComponent implements OnInit {
-  role:  RoleType;
+  role: RoleType;
   deleteRoleRecord: RoleType[];
   constructor(private roleService: RoleService) {
     this.getRoles();
   }
   ngOnInit() {
-    
+
   }
   getRoles() {
-    this.roleService.getAllRoles().subscribe((data) => {
+    this.roleService.getAllRolesWithoutPermission().subscribe((data) => {
       console.log(data);
       this.role = data;
       this.deleteRoleRecord = data;
     });
   }
-  deleteRole(data: number){
+  deleteRole(data: number) {
     let count = 0;
-    for(let obj of this.deleteRoleRecord){
-      if(obj.id === data){
+    for (let obj of this.deleteRoleRecord) {
+      if (obj.id === data) {
         this.deleteRoleRecord.splice(count, 1);
       }
       count++;
     }
-    // this.roleService.deletePermissions(this.deleteRoleRecord).subscribe((response) => {
-    //   console.log("Deleted");
-    // },
-    // (error) => console.log("Error!", error)
-    // );
+
   }
 }
