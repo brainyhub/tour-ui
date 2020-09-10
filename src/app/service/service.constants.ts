@@ -43,6 +43,15 @@ export class ServiceConstants {
     ServiceConstants.appContext + "tour/api/ver01/company/packages/update";
   public static deletePackageUrl: string =
     ServiceConstants.appContext + "tour/api/ver01/company/department/delete";
-  
+    public static getInvoicesUrl: string =
+    ServiceConstants.appContext + "tour/api/ver01/invoice-service/invoice";
+  public static newInvoicesUrl: string =
+    ServiceConstants.appContext + "tour/api/ver01/invoice-service/invoice";
+  public static updateInvoicesUrl: string =
+    ServiceConstants.appContext + "tour/api/ver01/invoice-service/invoice/update";
+  public static deleteInvoicesUrl: string =
+      ServiceConstants.appContext + "tour/api/ver01/invoice-service/invoice/delete";
+        
+ 
  
 }

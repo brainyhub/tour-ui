@@ -1,0 +1,20 @@
+export interface InvoiceType {
+    id: Number,
+    bata: Number,
+    closingKm: Number,
+    extraHr: Number,
+    extraHrCharges: Number,
+    extraKm: Number,
+    extraKmCharges: Number,
+    fileAttachment: string,
+    finalAmount: Number,
+    invoiceDate: String,
+    openingKm: Number,
+    parkingCharges: Number,
+    taxAmount: Number,
+    tollCharges: Number,
+    totalAmount: Number,
+    totalKm: Number,
+    waitingChanges: Number,
+    tripNumber: String
+}
