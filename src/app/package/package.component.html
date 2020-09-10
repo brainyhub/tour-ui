@@ -107,6 +107,15 @@
                           title="Edit"
                           ><i class="material-icons">&#xE254;</i></a
                         >
+                        <a
+                          href="#"
+                          data-toggle="modal"
+                          (click)="deleteRecord(package)"
+                          data-target="#viewModal"
+                          class="delete"
+                          title="Delete"
+                          ><i class="material-icons">&#xE872;</i></a
+                        >
                       </td>
                     </tbody>
                   </table>
@@ -325,7 +334,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Cancel
         </button>
-        <button type="button" class="btn btn-primary" (click)="createNew()">
+        <button type="button" class="btn btn-primary" (click)="createNew()" data-dismiss="modal">
           Add Record
         </button>
       </div>
@@ -537,6 +546,7 @@
           type="button"
           class="btn btn-primary"
           (click)="updatePackageToDb()"
+          data-dismiss="modal"
         >
           Update Record
         </button>
@@ -544,3 +554,124 @@
     </div>
   </div>
 </div>
+<!-- delete Modal -->
+<div
+  class="modal fade"
+  id="viewModal"
+  data-backdrop="static"
+  data-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl" *ngIf="deletepackage != undefined">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          Delete {{ deletepackage.packageTitle }}
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Package Id: {{ deletepackage.id }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Package Type: {{ deletepackage.packageType }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Package Type Desc: {{ deletepackage.packageTypeDesc }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Package For: {{ deletepackage.packageFor }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Package For Desc: {{ deletepackage.packageForDesc }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Package Title: {{ deletepackage.packageTitle }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Vehicle Type: {{ deletepackage.vehicleType }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Vehicle Type Desc: {{ deletepackage.vehicleTypeDesc }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Package Timeing: {{ deletepackage.packageTimeing }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Company Id: {{ deletepackage.companyId }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Company Desc: {{ deletepackage.companyDesc }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Extra Hr Rate: {{ deletepackage.extraHrRate }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Km Per Rate: {{ deletepackage.kmPerRate }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Extra Km Rate: {{ deletepackage.extraKmRate }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Rate: {{ deletepackage.rate }}</h4>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="deletePackageToDb()"
+          data-dismiss="modal"
+        >
+          Delete Record
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
