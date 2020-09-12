@@ -1,52 +1,20 @@
 export interface UpdateCompanyType{
- 
-  "address": string,
-  "email": string,
-  "gstNo": string,
-  "isActive": string,
-  "phone": string,
-  "title": string,
-  "website": string
-
-
-
-
-/*
-  "companyChangeRequired": Boolean,
-    "companyId": Number,
-    "departmentChangeRequired": Boolean,
-    "departmentId": Number,
-    "driverChangeRequired": Boolean,
-    "driverId": Number,
-    "firstPickTime": string,
-    "firstPickUpPoint": string,
-    "lastDroPoint": string,
-    "packageChangeRequired": Boolean,
-    "packageId": Number,
-    "reasonForChange": string,
-    "riderChangeRequired": Boolean,
-    "riders": [
-      {
-        "id": Number,
-        "dropDateTime": string,
-        "dropPoint": string,
-        "email": string,
-        "firstName": string,
-        "lastName": string,
-        "passType": Number,
-        "phone": string,
-        "pickDateTime": string,
-        "pickPoint": string
+  address: String,
+  companyTaxs:[
+    {
+      displayTitle:String,
+      percentOrAmout:String,
+      value:String,
+      vvtTaxType:{
+        title:String
       }
-    ],
-    "status": Number,
-    "statusChangeRequired": Boolean,
-    "tripId": Number,
-    "tripInfoChangeRequired": Boolean,
-    "triptTitle": string,
-    "vehicleChangeRequired": Boolean,
-    "vehicleId": Number
-  */
-  
-  
-  }
+    }
+  ],
+  email: String,
+  gstNo: String,
+  id: Number,
+  isActive: String,
+  phone: String,
+  title: String,
+  website: String,
+}

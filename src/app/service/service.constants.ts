@@ -23,6 +23,8 @@ export class ServiceConstants {
     ServiceConstants.appContext + "tour/api/ver01/vvt/company";
   public static updateCompanyUrl: string =
     ServiceConstants.appContext + "tour/api/ver01/vvt/company/update";
+  public static deleteCompanyUrl: string =
+    ServiceConstants.appContext + "tour/api/ver01/vvt/company/";
   public static rolesUrl: string =
     ServiceConstants.appContext + "tour/adminService/allRoles";
   public static deleteRolesUrl: string =

@@ -2,6 +2,7 @@ import { ServiceConstants } from './service.constants';
 import { CreateCompanyType } from './../company/createCompanyType';
 import { UpdateCompanyType } from './../company/updateCompanyType';
 import { CompanyReport } from './../company/companyReportType';
+import { DeleteCompanyType } from './../company/deleteCompanyType';
 import { MenuService } from './menu.service';
 import { Observable } from 'rxjs';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
@@ -32,5 +33,9 @@ export class CompanyService {
   public updateCompanyToDb(currentUpdateCompany:UpdateCompanyType): Observable<any>{
     const headers = { 'Authorization': 'Bearer '+sessionStorage.getItem("token") }
     return this.http.post<any>(ServiceConstants.updateCompanyUrl, currentUpdateCompany,{headers}); 
+  }
+  public deleteCompanyToDb(Delete :DeleteCompanyType): Observable<any>{
+    const headers = { 'Authorization': 'Bearer '+sessionStorage.getItem("token") }
+    return this.http.delete<any>(ServiceConstants.deleteCompanyUrl+Delete.id,{headers}); 
   }
 }

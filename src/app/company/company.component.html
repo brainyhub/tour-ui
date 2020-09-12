@@ -1,10 +1,51 @@
-<div style="margin-top:60px">
-    <div class="container-xl">
-        <div class="table-responsive">
-            <div class="table-wrapper">
-                <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#addModal">Add
-                    Company</button>
-                <table id="companyTable" datatable [dtOptions]="dtOptions" class="table table-striped table-bordered">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<div>
+  <div class="container-xl">
+      <div class="table-responsive">
+          <div class="table-wrapper">
+              <div id="Company" style="margin-top:60px">
+                  <div class="table-title">
+                      <div class="row">
+                          <div class="col-sm-4">
+                              <h2> Company Details </h2>
+                          </div>
+                          <div class="col-sm-6">
+                              <div
+                              class="btn-group"
+                              role="group"
+                              aria-label="Button group with nested dropdown"
+                              >
+                                  <button
+                                  type="button"
+                                  class="btn btn-sm btn-link"
+                                  data-toggle="modal"
+                                  data-target="#addModal"
+                                  >
+                                  Add Company 
+                                  </button>
+                              </div>
+                          </div>
+                          <div class="col-sm-2">
+                              <div class="search-box">
+                                  <i class="material-icons">&#xE8B6;</i>
+                                  <input type="text" class="form-control" placeholder="Search&hellip;"/>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <table id="companyTable" datatable [dtOptions]="dtOptions" class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -15,189 +56,531 @@
                             <th>Phone</th>
                             <th>Title </th>
                             <th>Website</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let company of companyResponse | paginate:config ;let indexOfelement=index;">
-                            <td>{{indexOfelement+1}}</td>
-                            <td>{{company.address}}</td>
-                            <td>{{company.email}}</td>
-                            <td>{{company.gstNo}}</td>
-                            <td>{{company.isActive}}</td>
-                            <td>{{company.Phone}}</td>
-                            <td>{{company.title}}</td>
-                            <td>{{company.Website}}</td>
-                            <td>
-                                <a href="#" data-toggle="modal" data-target="#editModal" (click)="modifyRecord(company)"
-                                    class="edit" title="Edit"><i class="material-icons">&#xE254;</i></a>
-                                <a href="#" data-toggle="modal" (click)="deleteRecord(company)" data-target="#viewModal"
-                                    class="delete" title="Delete"><i class="material-icons">&#xE872;</i></a>
-                            </td>
-                        </tr>
+                      <tr *ngFor="let company of companyResponse | paginate: config;
+                                  let indexOfelement = index"
+                      >
+                      <td>{{indexOfelement+1}}</td>
+                      <td>{{company.address}}</td>
+                      <td>{{company.email}}</td>
+                      <td>{{company.gstNo}}</td>
+                      <td>{{company.isActive}}</td>
+                      <td>{{company.phone}}</td>
+                      <td>{{company.title}}</td>
+                      <td>{{company.website}}</td>
+                      <td>
+                        <a href="#" 
+                        data-toggle="modal" 
+                        (click)="viewRecord(company)" 
+                        data-target="#viewModal" 
+                        class="view"
+                        title="View"
+                            ><i class="material-icons">&#xE417;</i></a>
+                        <a
+                          href="#"
+                          data-toggle="modal"
+                          data-target="#editModal"
+                          (click)="modifyRecord(company)"
+                          class="edit"
+                          title="Edit"
+                          ><i class="material-icons">&#xE254;</i></a
+                        >
+                        <a
+                          href="#"
+                          data-toggle="modal"
+                          (click)="deleteRecord(company)"
+                          data-target="#viewModal"
+                          class="delete"
+                          title="Delete"
+                          ><i class="material-icons">&#xE872;</i></a
+                        >
+                      </td>
                     </tbody>
-                </table>
-            </div>
+                  </table>
+                  <div class="clearfix">
+                    <div *ngIf="companyResponse != undefined" class="hint-text">
+                      Showing <b>{{ config.itemsPerPage }}</b> out of
+                      <b>{{ companyResponse.length }}</b> entries
+                    </div>
+                    <pagination-controls
+                      (pageChange)="pageChange($event)"
+                      class="my-pagination pagination"
+                    ></pagination-controls>
+                  </div>
+          </div>
         </div>
-        <!--Container-->
+     </div>
+  </div>
+</div>
+<!--add new company-->
+<div
+  class="modal fade"
+  id="addModal"
+  data-backdrop="static"
+  data-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Add New Company</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>title : </h2>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                [(ngModel)]="createCompany.title"
+                name="addtitle"
+                id="addtitle"
+                class="form-control"
+              />
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>address : </h2>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                [(ngModel)]="createCompany.address"
+                name="addaddress"
+                id="addaddress"
+                class="form-control"
+              />
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>email : </h2>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                [(ngModel)]="createCompany.email"
+                name="addemail"
+                id="addemail"
+                class="form-control"
+              />
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>gstNo : </h2>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                [(ngModel)]="createCompany.gstNo"
+                name="addgstNo"
+                id="addgstNo"
+                class="form-control"
+              />
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>isActive : </h2>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                [(ngModel)]="createCompany.isActive"
+                name="addisActive"
+                id="addisActive"
+                class="form-control"
+              />
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>phone : </h2>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                [(ngModel)]="createCompany.phone"
+                name="addphone"
+                id="addphone"
+                class="form-control"
+              />
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>website : </h2>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                [(ngModel)]="createCompany.website"
+                name="addwebsite"
+                id="addwebsite"
+                class="form-control"
+              />
+            </div> 
+          </div>
+          <div class="form-group col-md-6"></div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>displayTitle</th>
+                <th>percentOrAmout</th>
+                <th>value</th>
+                <th>vvtTaxTypetitle</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tr *ngFor="let taxs of createCompany.companyTaxs; let count = index">
+                <td>{{ count + 1 }}</td>
+                <td>
+                  <input type="text" class="form-control" [(ngModel)]="taxs.displayTitle"
+                    name="{{ count + 1 }}displayTitle" id="{{ count + 1 }}displayTitle"/>
+                </td>
+                <td>
+                  <input type="text" class="form-control" [(ngModel)]="taxs.percentOrAmout"
+                    name="{{ count + 1 }}percentOrAmout" id="{{ count + 1 }}percentOrAmout"/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" [(ngModel)]="taxs.value"
+                      name="{{ count + 1 }}value" id="{{ count + 1 }}value"/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" [(ngModel)]="taxs.vvtTaxType.title"
+                      name="{{ count + 1 }}vvtTaxTypeTitle" id="{{ count + 1 }}.vvtTaxTypeTitle"/>
+                </td>
+                <td>
+                    <a class="add" (click)="addNewTaxs()" title="Add"><i class="material-icons">&#xE03B;</i></a>
+                    <a class="delete" (click)="deleteTaxs(taxs)" title="Delete"><i
+                        class="material-icons">&#xE872;</i></a>
+                  </td>
+          </table>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" (click)="createNew()">
+          Add Record
+        </button>
+      </div>
+    <pre>{{createCompany |  json}}</pre>
     </div>
+  </div>
+
+</div>
+<!--edit company-->
+<div
+  class="modal fade"
+  id="editModal"
+  data-backdrop="static"
+  data-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Edit Company {{ updateCompany.title }}</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>title : </h2>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                [(ngModel)]="updateCompany.title"
+                name="edittitle"
+                id="edittitle"
+                class="form-control"
+              />
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>address : </h2>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                [(ngModel)]="updateCompany.address"
+                name="editaddress"
+                id="editaddress"
+                class="form-control"
+              />
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>email : </h2>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                [(ngModel)]="updateCompany.email"
+                name="editemail"
+                id="editemail"
+                class="form-control"
+              />
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>gstNo : </h2>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                [(ngModel)]="updateCompany.gstNo"
+                name="editgstNo"
+                id="editgstNo"
+                class="form-control"
+              />
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>isActive : </h2>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                [(ngModel)]="updateCompany.isActive"
+                name="editisActive"
+                id="editisActive"
+                class="form-control"
+              />
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>phone : </h2>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                [(ngModel)]="updateCompany.phone"
+                name="editphone"
+                id="editphone"
+                class="form-control"
+              />
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>website : </h2>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                [(ngModel)]="updateCompany.website"
+                name="editwebsite"
+                id="editwebsite"
+                class="form-control"
+              />
+            </div> 
+          </div>
+          <div class="form-group col-md-6"></div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>displayTitle</th>
+                <th>percentOrAmout</th>
+                <th>value</th>
+                <th>vvtTaxTypetitle</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tr *ngFor="let taxs of updateCompany.companyTaxs; let count = index">
+                <td>{{ count + 1 }}</td>
+                <td>
+                  <input type="text" class="form-control" [(ngModel)]="taxs.displayTitle"
+                    name="{{ count + 1 }}displayTitle" id="{{ count + 1 }}displayTitle"/>
+                </td>
+                <td>
+                  <input type="text" class="form-control" [(ngModel)]="taxs.percentOrAmout"
+                    name="{{ count + 1 }}percentOrAmout" id="{{ count + 1 }}percentOrAmout"/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" [(ngModel)]="taxs.value"
+                      name="{{ count + 1 }}value" id="{{ count + 1 }}value"/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" [(ngModel)]="taxs.vvtTaxType.title"
+                      name="{{ count + 1 }}vvtTaxTypeTitle" id="{{ count + 1 }}.vvtTaxTypeTitle"/>
+                </td>
+                <td>
+                    <a class="add" (click)="addNewUpdateTaxs()" title="Add"><i class="material-icons">&#xE03B;</i></a>
+                    <a class="delete" (click)="deleteUpdateTaxs(taxs)" title="Delete"><i
+                        class="material-icons">&#xE872;</i></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a class="add" (click)="addNewUpdateTaxs()" title="Add"><i class="material-icons">&#xE03B;</i></a>   
+                </td>
+            </tr>
+          </table>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" (click)="updateCompanyRec()">
+            Update
+        </button>
+      </div>
+    <pre>{{updateCompany |  json}}</pre>
+    </div>
+  </div>
+</div>
+<!--delete company-->
+<div
+  class="modal fade"
+  id="viewModal"
+  data-backdrop="static"
+  data-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" 
+            *ngIf="deleteRecordEnabled" 
+            id="staticBackdropLabel"
+            >Delete Company {{ updateCompany.title }}
+        </h5>
+        <h5 class="modal-title" 
+            *ngIf="!deleteRecordEnabled" 
+            id="staticBackdropLabel"
+            >Viewing Company Record of {{ updateCompany.title }}
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+            <div class="row">
+                <div class="col-sm-0">
+                    <h2>Id : {{ updateCompany.id }}</h2>
+                </div> 
+            </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>title : {{ updateCompany.title }}</h2>
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>address : {{ updateCompany.address }}</h2>
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>email : {{ updateCompany.email }}</h2>
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>gstNo : {{ updateCompany.gstNo }}</h2>
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>isActive : {{ updateCompany.isActive }}</h2>
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>phone : {{ updateCompany.phone }}</h2>
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+                <h2>website : {{ updateCompany.website }}</h2>
+            </div> 
+          </div>
+          <div class="form-group col-md-6"></div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>displayTitle</th>
+                <th>percentOrAmount</th>
+                <th>value</th>
+                <th>vvtTaxTypetitle</th>
+              </tr>
+            </thead>
+            <tr *ngFor="let taxs of updateCompany.companyTaxs; let count = index">
+                <td>{{ count + 1 }}</td>
+                <td>
+                  <h4>{{ taxs.displayTitle }}</h4>
+                </td>
+                <td>
+                    <h4>{{ taxs.percentOrAmout }}</h4>
+                </td>
+                <td>
+                    <h4>{{ taxs.value }}</h4>
+                </td>
+                <td>
+                    {{ taxs.vvtTaxType.title }}
+                </td>
+                
+            </tr>
+          </table>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" *ngIf="deleteRecordEnabled" (click)="deleteCompanyRec()">
+            Delete
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 
-
-<!-- Edit Modal -->
-<div class="modal fade" id="editModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl" *ngIf="currentUpdateCompany!=undefined">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Editing {{currentUpdateCompany}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-row">
-                        <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="currentUpdateCompany.address" name="address" id="address"
-                                class="form-control" placeholder="address"
-                                (change)="currentUpdateCompany.companyChangeRequired=true" />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="currentUpdateCompany.email" name="email" id="email"
-                                class="form-control" (change)="currentUpdateCompany.departmentChangeRequired=true" />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="text" class="form-control" [(ngModel)]="currentUpdateCompany.driverId"
-                                name="driverId" id="driverId" placeholder="driverId"
-                                (change)="currentUpdateCompany.driverChangeRequired=true" />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="text" class="form-control" [(ngModel)]="currentUpdateCompany.firstPickTime"
-                                name="firstPickTime" id="firstPickTime" placeholder="firstPickTime"
-                                (change)="currentUpdateCompany.tripInfoChangeRequired=true" />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="text" class="form-control" [(ngModel)]="currentUpdateCompany.firstPickUpPoint"
-                                name="firstPickUpPoint" id="firstPickUpPoint" placeholder="firstPickUpPoint"
-                                (change)="currentUpdateCompany.tripInfoChangeRequired=true" />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="text" class="form-control" [(ngModel)]="currentUpdateCompany.lastDroPoint"
-                                name="lastDroPoint" id="lastDroPoint" placeholder="lastDroPoint"
-                                (change)="currentUpdateCompany.tripInfoChangeRequired=true" />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Phone</th>
-                                    <th>Pickup Point</th>
-                                    <th>Pickup TIme</th>
-                                    <th>Drop Point</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let rider of currentUpdateCompany.riders;let count=index ">
-                                    <td>{{count+1}}</td>
-                                    <td><input type="text" class="form-control" [(ngModel)]="rider.firstName"
-                                            name="{{count+1}}firstName" id="{{count+1}}firstName"
-                                            placeholder="firstName"
-                                            (change)="currentUpdateCompany.riderChangeRequired=true" /></td>
-                                    <td><input type="text" class="form-control" [(ngModel)]="rider.lastName"
-                                            name="{{count+1}}lastName" id="{{count+1}}lastName" placeholder="lastName"
-                                            (change)="currentUpdateCompany.riderChangeRequired=true" /></td>
-                                    <td><input type="text" class="form-control" [(ngModel)]="rider.phone"
-                                            name="{{count+1}}phone" id="{{count+1}}phone" placeholder="phone"
-                                            (change)="currentUpdateCompany.riderChangeRequired=true" /></td>
-                                    <td><input type="text" class="form-control" [(ngModel)]="rider.pickPoint"
-                                            name="{{count+1}}pickPoint" id="{{count+1}}pickPoint"
-                                            placeholder="pickPoint"
-                                            (change)="currentUpdateCompany.riderChangeRequired=true" /></td>
-                                    <td><input type="text" class="form-control" [(ngModel)]="rider.pickDateTime"
-                                            name="{{count+1}}pickDateTime" id="{{count+1}}pickDateTime"
-                                            placeholder="pickDateTime"
-                                            (change)="currentUpdateCompany.riderChangeRequired=true" /></td>
-                                    <td><input type="text" class="form-control" [(ngModel)]="rider.dropPoint"
-                                            name="{{count+1}}dropPoint" id="{{count+1}}dropPoint"
-                                            placeholder="dropPoint"
-                                            (change)="currentUpdateCompany.riderChangeRequired=true" /></td>
-                                    <td>
-                                        <a class="add" (click)="addNewUpdateRider()" title="Add Rider"><i
-                                                class="material-icons">&#xE03B;</i></a>
-                                        <a class="delete" (click)="deleteNewlyAddedRiderFromUpdate(rider)"
-                                            title="Delete"><i class="material-icons">&#xE872;</i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" (click)="updateTripToDb()">Update Record</button>
-            </div>
-            <pre *ngIf="isDebugMode&& currentUpdateCompany!=undefined"> {{currentUpdateCompany | json}} </pre>
-        </div>
-    </div>
-</div>
-
-<!-- add modal -->
-<div class="modal fade" id="addModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" *ngIf="createCompany!=undefined">
-                <form>
-                    <div class="form-row">
-                        <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="createCompany.address" name="address" class="form-control"
-                                placeholder="Address">
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="createCompany.email" name="email" class="form-control"
-                                placeholder="email" />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="createCompany.gstNo" name="gstNo" class="form-control"
-                                placeholder="GstNO" />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="createCompany.isActive" name="isActive" class="form-control"
-                                placeholder="IsActive" />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="createCompany.phone" name="phone" class="form-control"
-                                placeholder="Phone" />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="createCompany.title" name="title" class="form-control"
-                                placeholder="Title" />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="createCompany.website" name="website" class="form-control"
-                                placeholder="Website" />
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" (click)="createNewCompany()">Add Record</button>
-            </div>
-            <pre *ngIf="isDebugMode"> {{createCompany | json}} </pre>
-        </div>
-    </div>
-</div>
