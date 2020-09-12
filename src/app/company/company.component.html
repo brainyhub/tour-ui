@@ -1,29 +1,10 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<div> 
+<div style="margin-top:60px">
     <div class="container-xl">
         <div class="table-responsive">
             <div class="table-wrapper">
-                <div class="table-title">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <h2> Company Details </h2>
-                        </div>
-                        <div class="col-sm-10">
-                            <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#addModal">Add Company</button>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="search-box">
-                                <i class="material-icons">&#xE8B6;</i>
-                                <input type="text" class="form-control" placeholder="Search&hellip;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <table  class="table table-striped table-hover table-bordered">
+                <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#addModal">Add
+                    Company</button>
+                <table datatable [dtOptions]="dtOptions" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -37,7 +18,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                         <tr *ngFor="let company of companyResponse | paginate:config ;let indexOfelement=index;" >
+                        <tr *ngFor="let company of companyResponse | paginate:config ;let indexOfelement=index;">
                             <td>{{indexOfelement+1}}</td>
                             <td>{{company.address}}</td>
                             <td>{{company.email}}</td>
@@ -46,14 +27,14 @@
                             <td>{{company.Phone}}</td>
                             <td>{{company.title}}</td>
                             <td>{{company.Website}}</td>
-                            <td>                           
-                                <a href="#" data-toggle="modal" data-target="#editModal" (click)="modifyRecord(company)" class="edit" title="Edit"><i
-                                        class="material-icons">&#xE254;</i></a>
-                                <a href="#" data-toggle="modal" (click)="deleteRecord(company)" data-target="#viewModal" class="delete" title="Delete"><i
-                                        class="material-icons">&#xE872;</i></a>
+                            <td>
+                                <a href="#" data-toggle="modal" data-target="#editModal" (click)="modifyRecord(company)"
+                                    class="edit" title="Edit"><i class="material-icons">&#xE254;</i></a>
+                                <a href="#" data-toggle="modal" (click)="deleteRecord(company)" data-target="#viewModal"
+                                    class="delete" title="Delete"><i class="material-icons">&#xE872;</i></a>
                             </td>
                         </tr>
-                  </tbody>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -77,22 +58,33 @@
                 <form>
                     <div class="form-row">
                         <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="currentUpdateCompany.address" name="address" id="address" class="form-control" placeholder="address" (change)="currentUpdateCompany.companyChangeRequired=true"/>
+                            <input type="text" [(ngModel)]="currentUpdateCompany.address" name="address" id="address"
+                                class="form-control" placeholder="address"
+                                (change)="currentUpdateCompany.companyChangeRequired=true" />
                         </div>
                         <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="currentUpdateCompany.email" name="email" id="email" class="form-control" (change)="currentUpdateCompany.departmentChangeRequired=true"/>
+                            <input type="text" [(ngModel)]="currentUpdateCompany.email" name="email" id="email"
+                                class="form-control" (change)="currentUpdateCompany.departmentChangeRequired=true" />
                         </div>
                         <div class="form-group col-md-2">
-                            <input type="text" class="form-control" [(ngModel)]="currentUpdateCompany.driverId" name="driverId" id="driverId" placeholder="driverId" (change)="currentUpdateCompany.driverChangeRequired=true"/>
+                            <input type="text" class="form-control" [(ngModel)]="currentUpdateCompany.driverId"
+                                name="driverId" id="driverId" placeholder="driverId"
+                                (change)="currentUpdateCompany.driverChangeRequired=true" />
                         </div>
                         <div class="form-group col-md-2">
-                            <input type="text" class="form-control" [(ngModel)]="currentUpdateCompany.firstPickTime" name="firstPickTime" id="firstPickTime" placeholder="firstPickTime" (change)="currentUpdateCompany.tripInfoChangeRequired=true"/>
+                            <input type="text" class="form-control" [(ngModel)]="currentUpdateCompany.firstPickTime"
+                                name="firstPickTime" id="firstPickTime" placeholder="firstPickTime"
+                                (change)="currentUpdateCompany.tripInfoChangeRequired=true" />
                         </div>
                         <div class="form-group col-md-2">
-                            <input type="text" class="form-control" [(ngModel)]="currentUpdateCompany.firstPickUpPoint" name="firstPickUpPoint" id="firstPickUpPoint" placeholder="firstPickUpPoint" (change)="currentUpdateCompany.tripInfoChangeRequired=true"/>
+                            <input type="text" class="form-control" [(ngModel)]="currentUpdateCompany.firstPickUpPoint"
+                                name="firstPickUpPoint" id="firstPickUpPoint" placeholder="firstPickUpPoint"
+                                (change)="currentUpdateCompany.tripInfoChangeRequired=true" />
                         </div>
                         <div class="form-group col-md-2">
-                            <input type="text" class="form-control" [(ngModel)]="currentUpdateCompany.lastDroPoint" name="lastDroPoint" id="lastDroPoint" placeholder="lastDroPoint" (change)="currentUpdateCompany.tripInfoChangeRequired=true"/>
+                            <input type="text" class="form-control" [(ngModel)]="currentUpdateCompany.lastDroPoint"
+                                name="lastDroPoint" id="lastDroPoint" placeholder="lastDroPoint"
+                                (change)="currentUpdateCompany.tripInfoChangeRequired=true" />
                         </div>
                     </div>
                     <div class="form-row">
@@ -112,22 +104,38 @@
                             <tbody>
                                 <tr *ngFor="let rider of currentUpdateCompany.riders;let count=index ">
                                     <td>{{count+1}}</td>
-                                    <td><input type="text" class="form-control" [(ngModel)]="rider.firstName" name="{{count+1}}firstName" id="{{count+1}}firstName" placeholder="firstName" (change)="currentUpdateCompany.riderChangeRequired=true"/></td>
-                                    <td><input type="text" class="form-control" [(ngModel)]="rider.lastName" name="{{count+1}}lastName" id="{{count+1}}lastName" placeholder="lastName" (change)="currentUpdateCompany.riderChangeRequired=true"/></td>
-                                    <td><input type="text" class="form-control" [(ngModel)]="rider.phone" name="{{count+1}}phone" id="{{count+1}}phone" placeholder="phone" (change)="currentUpdateCompany.riderChangeRequired=true"/></td>
-                                    <td><input type="text" class="form-control" [(ngModel)]="rider.pickPoint" name="{{count+1}}pickPoint" id="{{count+1}}pickPoint" placeholder="pickPoint" (change)="currentUpdateCompany.riderChangeRequired=true"/></td>
-                                    <td><input type="text" class="form-control" [(ngModel)]="rider.pickDateTime" name="{{count+1}}pickDateTime" id="{{count+1}}pickDateTime" placeholder="pickDateTime" (change)="currentUpdateCompany.riderChangeRequired=true"/></td>
-                                    <td><input type="text" class="form-control" [(ngModel)]="rider.dropPoint" name="{{count+1}}dropPoint" id="{{count+1}}dropPoint" placeholder="dropPoint" (change)="currentUpdateCompany.riderChangeRequired=true"/></td>
+                                    <td><input type="text" class="form-control" [(ngModel)]="rider.firstName"
+                                            name="{{count+1}}firstName" id="{{count+1}}firstName"
+                                            placeholder="firstName"
+                                            (change)="currentUpdateCompany.riderChangeRequired=true" /></td>
+                                    <td><input type="text" class="form-control" [(ngModel)]="rider.lastName"
+                                            name="{{count+1}}lastName" id="{{count+1}}lastName" placeholder="lastName"
+                                            (change)="currentUpdateCompany.riderChangeRequired=true" /></td>
+                                    <td><input type="text" class="form-control" [(ngModel)]="rider.phone"
+                                            name="{{count+1}}phone" id="{{count+1}}phone" placeholder="phone"
+                                            (change)="currentUpdateCompany.riderChangeRequired=true" /></td>
+                                    <td><input type="text" class="form-control" [(ngModel)]="rider.pickPoint"
+                                            name="{{count+1}}pickPoint" id="{{count+1}}pickPoint"
+                                            placeholder="pickPoint"
+                                            (change)="currentUpdateCompany.riderChangeRequired=true" /></td>
+                                    <td><input type="text" class="form-control" [(ngModel)]="rider.pickDateTime"
+                                            name="{{count+1}}pickDateTime" id="{{count+1}}pickDateTime"
+                                            placeholder="pickDateTime"
+                                            (change)="currentUpdateCompany.riderChangeRequired=true" /></td>
+                                    <td><input type="text" class="form-control" [(ngModel)]="rider.dropPoint"
+                                            name="{{count+1}}dropPoint" id="{{count+1}}dropPoint"
+                                            placeholder="dropPoint"
+                                            (change)="currentUpdateCompany.riderChangeRequired=true" /></td>
                                     <td>
-                                        <a class="add" (click)="addNewUpdateRider()" title="Add Rider" ><i
+                                        <a class="add" (click)="addNewUpdateRider()" title="Add Rider"><i
                                                 class="material-icons">&#xE03B;</i></a>
-                                        <a class="delete" (click)="deleteNewlyAddedRiderFromUpdate(rider)" title="Delete" ><i
-                                                class="material-icons">&#xE872;</i></a>
+                                        <a class="delete" (click)="deleteNewlyAddedRiderFromUpdate(rider)"
+                                            title="Delete"><i class="material-icons">&#xE872;</i></a>
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>                        
-                        </div>
+                        </table>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -154,25 +162,32 @@
                 <form>
                     <div class="form-row">
                         <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="createCompany.address" name="address"  class="form-control" placeholder="Address">
+                            <input type="text" [(ngModel)]="createCompany.address" name="address" class="form-control"
+                                placeholder="Address">
                         </div>
                         <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="createCompany.email" name="email"  class="form-control" placeholder="email" />
+                            <input type="text" [(ngModel)]="createCompany.email" name="email" class="form-control"
+                                placeholder="email" />
                         </div>
                         <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="createCompany.gstNo" name="gstNo"  class="form-control" placeholder="GstNO"/>
+                            <input type="text" [(ngModel)]="createCompany.gstNo" name="gstNo" class="form-control"
+                                placeholder="GstNO" />
                         </div>
                         <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="createCompany.isActive" name="isActive"  class="form-control" placeholder="IsActive" />
+                            <input type="text" [(ngModel)]="createCompany.isActive" name="isActive" class="form-control"
+                                placeholder="IsActive" />
                         </div>
                         <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="createCompany.phone" name="phone"  class="form-control" placeholder="Phone" />
+                            <input type="text" [(ngModel)]="createCompany.phone" name="phone" class="form-control"
+                                placeholder="Phone" />
                         </div>
                         <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="createCompany.title" name="title"  class="form-control" placeholder="Title" />
+                            <input type="text" [(ngModel)]="createCompany.title" name="title" class="form-control"
+                                placeholder="Title" />
                         </div>
                         <div class="form-group col-md-2">
-                            <input type="text" [(ngModel)]="createCompany.website" name="website"  class="form-control" placeholder="Website" />
+                            <input type="text" [(ngModel)]="createCompany.website" name="website" class="form-control"
+                                placeholder="Website" />
                         </div>
                     </div>
                 </form>
@@ -184,4 +199,4 @@
             <pre *ngIf="isDebugMode"> {{createCompany | json}} </pre>
         </div>
     </div>
-</div> 
+</div>

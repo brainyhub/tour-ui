@@ -13,11 +13,18 @@ export class PermisionComponent implements OnInit {
   permissionData: PermissionType;
   deletePermissionData: PermissionType[];
   editPermission: PermissionType;
-  constructor(private permissionService: PermissionService, private notifyMsg: NotifyService) { 
-    this.getPermission();
+  dtOptions: any = {};
+  constructor(private permissionService: PermissionService, private notifyMsg: NotifyService) {
+
   }
 
   ngOnInit() {
+    this.dtOptions = {
+      dom: 'Bfrtip',
+      buttons: ['print', 'excel', 'pdf']
+
+    };
+    this.getPermission();
     this.editPermission = {
       id: 0,
       name: "",
@@ -25,7 +32,7 @@ export class PermisionComponent implements OnInit {
       selected: false
     }
   }
-  editRecord(record: PermissionType){
+  editRecord(record: PermissionType) {
     this.editPermission.id = record.id;
     this.editPermission.name = record.name;
   }
@@ -38,17 +45,17 @@ export class PermisionComponent implements OnInit {
   }
   editPermissionRecord() {
     this.permissionService.updatePermissionToDb(this.editPermission).subscribe((response) => {
-      console.log("response",  response);
+      console.log("response", response);
     },
-    (error) => console.log("Error!", error)
+      (error) => console.log("Error!", error)
     );
-    this.notifyMsg.successMsg("Permission updated successfully.","Permission Changed.");
+    this.notifyMsg.successMsg("Permission updated successfully.", "Permission Changed.");
     //this.getPermission();
   }
-  deletePermission(data: number){
+  deletePermission(data: number) {
     let count = 0;
-    for(let obj of this.deletePermissionData){
-      if(obj.id === data){
+    for (let obj of this.deletePermissionData) {
+      if (obj.id === data) {
         this.deletePermissionData.splice(count, 1);
       }
       count++;

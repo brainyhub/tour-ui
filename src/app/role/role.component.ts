@@ -15,13 +15,15 @@ export class RoleComponent implements OnInit {
   deleteRoleRecord: RoleType[];
   dtOptions: any = {};
   constructor(private roleService: RoleService) {
-    this.getRoles();
+
   }
   ngOnInit() {
+    this.getRoles();
     this.dtOptions = {
       dom: 'Bfrtip',
       buttons: ['print', 'excel', 'pdf']
     };
+
   }
   getRoles() {
     this.roleService.getAllRolesWithoutPermission().subscribe((data) => {
