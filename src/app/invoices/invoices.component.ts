@@ -32,6 +32,7 @@ export class InvoicesComponent implements OnInit {
       buttons: ['print', 'excel', 'pdf']
 
     };
+    this.getInvoiceRecords();
     this.config = {
       currentPage: 1,
       itemsPerPage: 4,

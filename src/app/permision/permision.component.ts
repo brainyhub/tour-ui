@@ -15,7 +15,7 @@ export class PermisionComponent implements OnInit {
   editPermission: PermissionType;
   dtOptions: any = {};
   constructor(private permissionService: PermissionService, private notifyMsg: NotifyService) {
-
+    this.getPermission();
   }
 
   ngOnInit() {

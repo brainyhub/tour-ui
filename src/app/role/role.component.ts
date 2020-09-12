@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { RoleService } from "./../service/role.service";
 import { Role } from './Role';
 import { RoleType } from './RoleType';
@@ -10,12 +10,15 @@ import { Permission } from '../permision/permission';
   templateUrl: './role.component.html',
   styleUrls: ['./role.component.css']
 })
-export class RoleComponent implements OnInit {
+export class RoleComponent implements OnInit, OnChanges {
   role: RoleType;
   deleteRoleRecord: RoleType[];
   dtOptions: any = {};
   constructor(private roleService: RoleService) {
-
+    this.getRoles();
+  }
+  ngOnChanges() {
+    this.getRoles();
   }
   ngOnInit() {
     this.getRoles();

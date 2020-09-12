@@ -36,6 +36,7 @@ export class CompanyComponent implements OnInit {
     this.getCompanyRecords();
   }
   ngOnChanges() {
+    this.getCompanyRecords();
   }
   ngOnInit() {
     this.dtOptions = {
@@ -43,6 +44,7 @@ export class CompanyComponent implements OnInit {
       buttons: ['print', 'excel', 'pdf']
 
     };
+    this.getCompanyRecords();
     this.config = {
       currentPage: 1,
       itemsPerPage: 4,
