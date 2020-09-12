@@ -27,6 +27,7 @@ export class TripComponent implements OnInit, OnChanges {
   isDebugMode = true;
   isLogin: Boolean = false;
   vvtCompanies: VVT[];
+  dtOptions: any = {};
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -36,8 +37,12 @@ export class TripComponent implements OnInit, OnChanges {
   ) {
     this.getTripRecords();
   }
-  ngOnChanges() {}
+  ngOnChanges() { }
   ngOnInit() {
+    this.dtOptions = {
+      dom: 'Bfrtip',
+      buttons: ['print', 'excel', 'pdf']
+    };
     this.vvtCompanies = this.vvtService.COMPANIES;
     this.config = {
       currentPage: 1,

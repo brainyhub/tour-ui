@@ -13,11 +13,15 @@ import { Permission } from '../permision/permission';
 export class RoleComponent implements OnInit {
   role: RoleType;
   deleteRoleRecord: RoleType[];
+  dtOptions: any = {};
   constructor(private roleService: RoleService) {
     this.getRoles();
   }
   ngOnInit() {
-
+    this.dtOptions = {
+      dom: 'Bfrtip',
+      buttons: ['print', 'excel', 'pdf']
+    };
   }
   getRoles() {
     this.roleService.getAllRolesWithoutPermission().subscribe((data) => {

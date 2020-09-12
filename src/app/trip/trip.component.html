@@ -7,50 +7,16 @@
   <div class="container-xl">
     <div class="table-responsive">
       <div class="table-wrapper">
-        <div class="table-title">
-          <div class="row">
-            <div class="col-sm-4">
-              <h2>Trip Details</h2>
-            </div>
-            <div class="col-sm-6">
-              <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#reportModal">
-                  Report
-                </button>
-                <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#addModal">
-                  New Trip
-                </button>
-                <button type="button" class="btn btn-sm btn-link">Print</button>
-                <div class="btn-group" role="group">
-                  <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-link dropdown-toggle"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Export
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                    <a class="dropdown-item" href="#">Excel</a>
-                    <a class="dropdown-item" href="#">Csv</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-2">
-              <div class="search-box">
-                <i class="material-icons">&#xE8B6;</i>
-                <input type="text" class="form-control" placeholder="Search&hellip;" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <table class="table table-striped table-hover table-bordered">
+        <table datatable [dtOptions]="dtOptions" class="table table-striped table-bordered">
           <thead>
             <tr>
               <th>#</th>
-              <th>Trip ID <i class="fa fa-sort"></i></th>
+              <th>Trip ID</th>
               <th>Requestor</th>
               <th>Pickup</th>
-              <th>Drop <i class="fa fa-sort"></i></th>
+              <th>Drop</th>
               <th>Package</th>
-              <th>Driver/Vehicle <i class="fa fa-sort"></i></th>
+              <th>Driver/Vehicle</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -93,13 +59,7 @@
             </tr>
           </tbody>
         </table>
-        <div class="clearfix">
-          <div *ngIf="tripResponse != undefined" class="hint-text">
-            Showing <b>{{ config.itemsPerPage }}</b> out of
-            <b>{{ tripResponse.length }}</b> entries
-          </div>
-          <pagination-controls (pageChange)="pageChange($event)" class="my-pagination pagination"></pagination-controls>
-        </div>
+
       </div>
     </div>
     <!--Container-->
