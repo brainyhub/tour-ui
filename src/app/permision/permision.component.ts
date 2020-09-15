@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PermissionService } from "./../service/permission.service";
 import { Permission } from './permission';
 import { PermissionType } from './permissionType';
+import { PermissionEditType } from './permissionEditType';
+import { DeletePermissionType } from './deletePermissionType';
 import { NotifyService } from "./../service/notify.service";
 
 @Component({
@@ -11,8 +13,8 @@ import { NotifyService } from "./../service/notify.service";
 })
 export class PermisionComponent implements OnInit {
   permissionData: PermissionType;
-  deletePermissionData: PermissionType[];
-  editPermission: PermissionType;
+  deletePermissionData: DeletePermissionType;
+  editPermission: PermissionEditType;
   dtOptions: any = {};
   constructor(private permissionService: PermissionService, private notifyMsg: NotifyService) {
     this.getPermission();
@@ -27,11 +29,10 @@ export class PermisionComponent implements OnInit {
     this.getPermission();
     this.editPermission = {
       id: 0,
-      name: "",
-      assigned: false,
-      selected: false
+      name: ""
     }
   }
+
   editRecord(record: PermissionType) {
     this.editPermission.id = record.id;
     this.editPermission.name = record.name;
@@ -40,7 +41,6 @@ export class PermisionComponent implements OnInit {
     this.permissionService.getAllPermissions().subscribe((data) => {
       console.log(data);
       this.permissionData = data;
-      this.deletePermissionData = data;
     });
   }
   editPermissionRecord() {
@@ -49,21 +49,12 @@ export class PermisionComponent implements OnInit {
     },
       (error) => console.log("Error!", error)
     );
-    this.notifyMsg.successMsg("Permission updated successfully.", "Permission Changed.");
-    //this.getPermission();
   }
-  deletePermission(data: number) {
-    let count = 0;
-    for (let obj of this.deletePermissionData) {
-      if (obj.id === data) {
-        this.deletePermissionData.splice(count, 1);
-      }
-      count++;
-    }
-    // this.permissionService.deletePermissionRecord(this.deletePermissionData).subscribe((response) => {
-    //   console.log("Deleted");
-    // },
-    // (error) => console.log("Error!", error)
-    // );
+  deletePermission() {
+    this.permissionService.deletePermissionRecord(this.deletePermissionData).subscribe((response) => {
+      console.log("response", response);
+    },
+      (error) => console.log("Error!", error)
+    );
   }
 }

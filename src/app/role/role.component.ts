@@ -35,14 +35,15 @@ export class RoleComponent implements OnInit, OnChanges {
       this.deleteRoleRecord = data;
     });
   }
-  deleteRole(data: number) {
+  deleteRole(record: any) {
+    this.roleService.deletePermissions(this.deleteRoleRecord).subscribe((data) => {
     let count = 0;
     for (let obj of this.deleteRoleRecord) {
-      if (obj.id === data) {
+      if (obj.id === record.id) {
         this.deleteRoleRecord.splice(count, 1);
       }
       count++;
     }
-
+    });
   }
 }
