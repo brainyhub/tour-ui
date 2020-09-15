@@ -5,6 +5,7 @@ import { HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { AddRoleType } from '../role/addRoleType';
 
 @Injectable({
   providedIn: "root",
@@ -37,6 +38,18 @@ export class RoleService {
     return this.http.post<any>(
       ServiceConstants.permissionAddUrl,
       { rolesPermissions: updatePermission },
+      {
+        headers,
+      }
+    );
+  }
+  public newRoleToDB(newRole: AddRoleType): Observable<any> {
+    const headers = {
+      Authorization: "Bearer " + sessionStorage.getItem("token"),
+    };
+    return this.http.post<any>(
+      ServiceConstants.getRolesUrl,
+      { rolesPermissions: newRole },
       {
         headers,
       }

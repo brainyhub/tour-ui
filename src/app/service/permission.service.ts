@@ -6,7 +6,6 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { PermissionType } from './../permision/PermissionType';
 import { PermissionEditType } from './../permision/PermissionEditType';
-import { DeletePermissionType } from './../permision/deletePermissionType';
 
 @Injectable({
   providedIn: "root",
@@ -30,7 +29,14 @@ export class PermissionService {
     return this.http.post<any>(ServiceConstants.updatePermissionUrl, updatePermission,{ headers }
     );
   }
-  public deletePermissionRecord(deletePermission: DeletePermissionType): Observable<any> {
+  public addNew(addPermission: PermissionEditType): Observable<any> {
+    const headers = {
+      Authorization: "Bearer " + sessionStorage.getItem("token"),
+    };
+    return this.http.post<any>(ServiceConstants.permissionUrl, addPermission,{ headers }
+    );
+  }
+  public deletePermissionRecord(deletePermission: PermissionType): Observable<any> {
     const headers = {
       Authorization: "Bearer " + sessionStorage.getItem("token"),
     };
