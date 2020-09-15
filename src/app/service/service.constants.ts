@@ -55,4 +55,22 @@ export class ServiceConstants {
     ServiceConstants.appContext + "tour/api/ver01/invoice-service/invoice/delete";
   public static getRolesUrl: string =
     ServiceConstants.appContext + "tour/adminService/roles";
+  public static checkIdUrl: string =
+    ServiceConstants.appContext + "tour/api/ver01/tripservice/trip/";
+  public static vehicleDriverAssignmentUrl: string =
+    ServiceConstants.appContext + "tour/api/ver01/tripservice/tripAssignment";
+  public static tripStartUrl: string =
+    ServiceConstants.appContext + "tour/api/ver01/tripservice/tripStart";
+  public static tripPanicUrl: string =
+    ServiceConstants.appContext + "tour/api/ver01/tripservice/tripPanic";
+  public static tripConfirmationUrl: string =
+    ServiceConstants.appContext + "tour/api/ver01/tripservice/tripConfirmation";
+  public static tripCompleteUrl: string =
+    ServiceConstants.appContext + "tour/api/ver01/tripservice/tripComplete";
+  public static tripBreakdownUrl: string =
+    ServiceConstants.appContext + "tour/api/ver01/tripservice/tripBreakdown";
+  public static tripCancelUrl: string =
+    ServiceConstants.appContext + "tour/api/ver01/tripservice/tripCancel";
+  public static tripPassangerChangeUrl: string =
+    ServiceConstants.appContext + "tour/api/ver01/tripservice/tripPassangerChange";
 }

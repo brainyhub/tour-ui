@@ -38,6 +38,16 @@ export const VALIDMENUS: Menu[] = [
     "submenu": []
   },
   {
+    "id": "triptripManagement",
+    "permission": "MENU_TRIP",
+    "icon": "menu-arrow arrow_carrot-right",
+    "url": "/site/tripManagement",
+    "title": "Trip Management",
+    "active": false,
+    "hasChild": false,
+    "submenu":  []
+  },
+  {
     "id": "invoice",
     "permission": "MENU_TRIP",
     "icon": "menu-arrow arrow_carrot-right",
