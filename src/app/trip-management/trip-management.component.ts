@@ -5,6 +5,7 @@ import { TripType } from "./tripType";
 import { VehicleDriverType } from "./vehicleDriverType";
 import { TripPassangerType } from "./tripPassangerType";
 import { TripIdType } from "./tripIdType";
+import { TripInfoType } from "./tripInfoType";
 import { NotifyService } from "./../service/notify.service";
 
 @Component({
@@ -18,6 +19,7 @@ export class TripManagementComponent implements OnInit {
   tripType: TripType;
   TripId:TripIdType;
   tripPassanger:TripPassangerType;
+  tripInfo:TripInfoType;
   dtOptions: any = {};
   loading = false;
   submitted = false;
@@ -167,6 +169,29 @@ export class TripManagementComponent implements OnInit {
       vehicleId:0,
       tripId:0
     };
+    this.tripInfo={
+      companyId: 0,
+      departmentId: 0,
+      firstPickTime: "",
+      firstPickUpPoint: "",
+      lastDroPoint: "",
+      packageId: 0,
+      riders: [
+        {
+          dropDateTime: "",
+          dropPoint: "",
+          email: "",
+          firstName: "",
+          lastName: "",
+          passType: 0,
+          phone: "",
+          pickDateTime: "",
+          pickPoint: ""
+        }
+      ],
+      tripId: 0,
+      triptTitle: ""
+    }
   }
   get f() {
     return this.tripManagement.controls;
@@ -181,7 +206,7 @@ export class TripManagementComponent implements OnInit {
   }
   loadtripPassanger(){
     this.tripPassanger.tripId=this.tripType.id;
-    this.tripPassanger.rider=null;
+    this.tripPassanger.rider.splice(0,this.tripPassanger.rider.length);
     let obj: any = [];
       for (let riders of this.tripType.trip_passanger_info){
         let rider={
@@ -222,6 +247,58 @@ export class TripManagementComponent implements OnInit {
       count++;
     }
   }
+  loadtripnfo(){
+    {
+      this.tripInfo.companyId=this.tripType.trip_company_info.id;
+      this.tripInfo.departmentId=this.tripType.trip_company_department.id;
+      this.tripInfo.firstPickTime=this.tripType.trip_pick_time;
+      this.tripInfo.firstPickUpPoint=this.tripType.trip_pick_point;
+      this.tripInfo.lastDroPoint=this.tripType.trip_drop_point;
+      this.tripInfo.packageId=this.tripType.trip_package_info.id;
+      this.tripInfo.tripId=this.tripType.id;
+      //this.tripInfo.triptTitle=this.tripType.
+      this.tripInfo.riders.splice(0,this.tripInfo.riders.length);
+      let obj: any = [];
+      for (let riders of this.tripType.trip_passanger_info){
+        let rider={
+          dropDateTime : riders.drop_time ,
+          dropPoint : riders.drop,
+          email  : riders.email  ,
+          firstName : riders.first_name  ,
+          lastName : riders.last_name  ,
+          passType : riders.id,
+          phone : riders.phone  ,
+          pickDateTime : riders.pickup_time  ,
+          pickPoint : riders.pickup  
+        }
+        obj.push(rider);
+      }
+      this.tripInfo.riders=obj;
+    }
+  }
+  addNewRiders(){
+    this.tripInfo.riders.push({
+      dropDateTime : "" ,
+      dropPoint : ""  ,
+      email  : ""  ,
+      firstName : ""  ,
+      lastName : ""  ,
+      passType : 0,
+      phone : ""  ,
+      pickDateTime : ""  ,
+      pickPoint : ""  
+    });
+  }
+  deleteRiders(rider: any){
+    let count = 0;
+    for(let riders of this.tripInfo.riders){
+      if(rider.firstName==riders.firstName){
+        this.tripInfo.riders.splice(count, 1);
+        break;
+      }
+      count++;
+    }
+  }
   anotherId(){
     this.tripType=null;
     this.viewOption=false;
@@ -230,6 +307,7 @@ export class TripManagementComponent implements OnInit {
     this.submitted = true;
     this.tripManagementService.checkid(this.tripManagement.value.id).subscribe(
       (data) => {
+        console.log(data);
         this.tripType=data;
         this.viewOption=true;
         console.log(this.tripType);
@@ -322,6 +400,16 @@ export class TripManagementComponent implements OnInit {
       },
       (error) =>{
         console.log("error tripPassanger",error);
+      });
+  }
+  tripInfoChange(){
+    this.tripManagementService.tripInfoChange(this.tripInfo).subscribe(
+      (success) => {
+        console.log("success tripInfoChange",success);
+
+      },
+      (error) =>{
+        console.log("error tripInfoChange",error);
       });
   }
 }

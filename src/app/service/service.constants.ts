@@ -73,4 +73,6 @@ export class ServiceConstants {
     ServiceConstants.appContext + "tour/api/ver01/tripservice/tripCancel";
   public static tripPassangerChangeUrl: string =
     ServiceConstants.appContext + "tour/api/ver01/tripservice/tripPassangerChange";
+  public static tripInfoChangeUrl: string =
+      ServiceConstants.appContext + "tour/api/ver01/tripservice/tripChange";
 }

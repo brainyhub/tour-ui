@@ -57,7 +57,7 @@
           </div>
           <div class="row">
             <div class="col-sm-6">
-                <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#addModal">
+                <button type="button" (click)="loadtripnfo()" class="btn btn-sm btn-link" data-toggle="modal" data-target="#tripInfoChange">
                     Trip Info Change
                 </button>
             </div>
@@ -284,6 +284,7 @@
     </div>
   </div>
 </div>
+<!--tripPassangerInfoChange-->
 <div
   class="modal fade"
   id="tripPassangerInfoChange"
@@ -384,6 +385,175 @@
             Confirm Change Passanger 
         </button>
       </div>
+      <pre>{{tripPassanger | json}}</pre>
+    </div>
+  </div>
+</div>
+<!--tripInfoChange-->
+<div
+  class="modal fade"
+  id="tripInfoChange"
+  data-backdrop="static"
+  data-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">trip Info Change for Id {{ tripInfo.tripId}}</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-sm-0">
+              <h2> Company Id:</h2>
+            </div>
+            <div class="col-sm-6">
+              <input type="text" [(ngModel)]="tripInfo.companyId" name="tripInfocompanyId" id="tripInfocompanyId"
+                class="form-control" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+              <h2> Department Id :</h2>
+            </div>
+            <div class="col-sm-6">
+              <input type="text" [(ngModel)]="tripInfo.departmentId" name="tripInfodepartmentId" id="tripInfodepartmentId"
+                class="form-control" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+              <h2>First Pick Time :</h2>
+            </div>
+            <div class="col-sm-6">
+              <input type="text" [(ngModel)]="tripInfo.firstPickTime" name="tripInfofirstPickTime" id="tripInfofirstPickTime"
+                class="form-control" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+              <h2>First Pick Up Point :</h2>
+            </div>
+            <div class="col-sm-6">
+              <input type="text" [(ngModel)]="tripInfo.firstPickUpPoint" name="tripInfofirstPickUpPoint" id="tripInfofirstPickUpPoint"
+                class="form-control" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+              <h2>Last Drop Point :</h2>
+            </div>
+            <div class="col-sm-6">
+              <input type="text" [(ngModel)]="tripInfo.lastDroPoint" name="tripInfolastDroPoint" id="tripInfolastDroPoint"
+                class="form-control" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+              <h2>Package Id :</h2>
+            </div>
+            <div class="col-sm-6">
+              <input type="text" [(ngModel)]="tripInfo.packageId" name="tripInfopackageId" id="tripInfopackageId"
+                class="form-control" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-0">
+              <h2>trip Title :</h2>
+            </div>
+            <div class="col-sm-6">
+              <input type="text" [(ngModel)]="tripInfo.triptTitle" name="tripInfotriptTitle" id="tripInfotriptTitle"
+                class="form-control" />
+            </div>
+          </div>
+          <div class="form-group col-md-6"></div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>dropDateTime</th>
+                <th>dropPoint</th>
+                <th>email</th>
+                <th>firstName</th>
+                <th>lastName</th>
+                <th>passType</th>
+                <th>phone</th>
+                <th>pickDateTime</th>
+                <th>pickPoint</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tr *ngFor="let rider of tripInfo.riders; let count = index">
+                <td>{{ count + 1 }}</td>
+                <td>
+                  <input type="text" class="form-control" [(ngModel)]="rider.dropDateTime"
+                    name="{{ count + 1 }}dropDateTime" id="{{ count + 1 }}dropDateTime"/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" [(ngModel)]="rider.dropPoint"
+                      name="{{ count + 1 }}dropPoint" id="{{ count + 1 }}dropPoint"/>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" [(ngModel)]="rider.email"
+                      name="{{ count + 1 }}email" id="{{ count + 1 }}email"/>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" [(ngModel)]="rider.firstName"
+                      name="{{ count + 1 }}firstName" id="{{ count + 1 }}firstName"/>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" [(ngModel)]="rider.lastName"
+                      name="{{ count + 1 }}lastName" id="{{ count + 1 }}lastName"/>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" [(ngModel)]="rider.passType"
+                      name="{{ count + 1 }}passType" id="{{ count + 1 }}passType"/>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" [(ngModel)]="rider.phone"
+                      name="{{ count + 1 }}phone" id="{{ count + 1 }}phone"/>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" [(ngModel)]="rider.pickDateTime"
+                      name="{{ count + 1 }}pickDateTime" id="{{ count + 1 }}pickDateTime"/>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" [(ngModel)]="rider.pickPoint"
+                      name="{{ count + 1 }}pickPoint" id="{{ count + 1 }}pickPoint"/>
+                  </td>
+                <td>
+                    <a class="delete" (click)="deleteRiders(rider)" title="Delete"><i
+                        class="material-icons">&#xE872;</i></a>
+                </td>
+            </tr>
+            <tr>
+              <td>
+                <a class="add" (click)="addNewRiders()" title="Add">Add new rider</a>
+              </td>
+            </tr>
+          </table>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" (click)="tripInfoChange()">
+            Confirm Change Record 
+        </button>
+      </div>
+      <pre>{{tripInfo | json}}</pre>
     </div>
   </div>
 </div>

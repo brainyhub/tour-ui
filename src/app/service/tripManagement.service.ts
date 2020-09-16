@@ -7,6 +7,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 import { TripIdType } from './../trip-management/tripIdType';
 import { TripPassangerType } from './../trip-management/tripPassangerType';
 import { VehicleDriverType } from './../trip-management/vehicleDriverType';
+import { TripInfoType } from './../trip-management/tripInfoType';
 @Injectable({
   providedIn: "root",
 })
@@ -77,5 +78,11 @@ export class TripManagementService {
        return this.http.put<any>(ServiceConstants.tripPassangerChangeUrl,tripPassanger,{ headers }
         );
     }
-    
+    public tripInfoChange(tripInfo: TripInfoType): Observable<any> {
+      const headers = {
+        Authorization: "Bearer " + sessionStorage.getItem("token"),
+      };
+       return this.http.put<any>(ServiceConstants.tripInfoChangeUrl,tripInfo,{ headers }
+        );
+    }
 }
