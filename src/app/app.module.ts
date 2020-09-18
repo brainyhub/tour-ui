@@ -49,6 +49,7 @@ import { ChangePasswordComponent } from "./change-password/change-password.compo
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
 import { DataTablesModule } from 'angular-datatables';
+import { TripManagementComponent } from './trip-management/trip-management.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { DataTablesModule } from 'angular-datatables';
     TaxComponent,
     StatusComponent,
     ChangePasswordComponent,
+    TripManagementComponent,
   ],
   imports: [
     BrowserModule,

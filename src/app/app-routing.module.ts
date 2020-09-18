@@ -25,6 +25,8 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AssignPermissionComponent } from "./assign-permission/assign-permission.component";
 import { UsersComponent } from "./users/users.component";
+import { TripManagementComponent } from './trip-management/trip-management.component';
+
 
 const routes: Routes = [
   //Site routes goes here
@@ -50,6 +52,7 @@ const routes: Routes = [
       { path: "notifications", component: NotificationComponent },
       { path: "userprofile", component: UserProfileComponent },
       { path: "booking", component: BookingComponent },
+      { path: "tripManagement", component:TripManagementComponent},
     ],
   },
 
