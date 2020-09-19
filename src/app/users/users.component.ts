@@ -11,9 +11,10 @@ import { UserRoleType } from './UserRoleType';
 export class UsersComponent implements OnInit {
   users: UserType;
   assignRoleType: UserRoleType;
-
+  show: Boolean = false;
   constructor(private userService: UserService) {
     this.userData();
+    this.assignR();
    }
 
   ngOnInit() {
@@ -29,5 +30,5 @@ export class UsersComponent implements OnInit {
       console.log(data);
       this.assignRoleType = data;
     });
-  }
+  } 
 }
