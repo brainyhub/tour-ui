@@ -9,11 +9,11 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class AdminService {
-  constructor(private http: HttpClient, private menuService: MenuService) {}
+  constructor(private http: HttpClient, private menuService: MenuService) { }
   public validateUser(loginrequest: LoginRequest): Observable<any> {
     const headers = {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTU5OTAzMjkxOSwiaWF0IjoxNTk5MDE0OTE5fQ.v65YCT8xb9glRgTQcehz73a9jO63bjraYiA7wVkk8AYZf655HtEunXFEzg-WKq8KG6pPr9Go1dc0-Cg08tc8QQ",
+      //Authorization:
+      // "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTU5OTAzMjkxOSwiaWF0IjoxNTk5MDE0OTE5fQ.v65YCT8xb9glRgTQcehz73a9jO63bjraYiA7wVkk8AYZf655HtEunXFEzg-WKq8KG6pPr9Go1dc0-Cg08tc8QQ",
     };
     return this.http.post<any>(ServiceConstants.loginUrl, loginrequest, {
       headers,

@@ -10,12 +10,12 @@ import { Permission } from "../permision/permission";
   styleUrls: ["./assign-permission.component.css"],
 })
 export class AssignPermissionComponent implements OnInit {
-  private assignRolePermission: Role[];
+  public assignRolePermission: Role[];
   isDebugMode = false;
   constructor(
     private roleService: RoleService,
     private notifyService: NotifyService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getAllRoles();

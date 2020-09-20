@@ -4,8 +4,8 @@
             <a href="" style="padding-top:50px;padding-top: 50px;font-size: 22px;text-transform: uppercase;">
                 <span class="lite">Tours</span></a>
         </div>
-        <form [formGroup]="loginForm" id="login-form" class="login-form" action="/~pawantours/booking/site/login" method="post"
-            style="margin: 10px auto 0;">
+        <form [formGroup]="loginForm" id="login-form" class="login-form" action="/~pawantours/booking/site/login"
+            method="post" style="margin: 10px auto 0;">
             <input type="hidden" name="_csrf-frontend"
                 value="BqybZht8VLcvfxaGwMtzG4GFd1UdtWqO1s-vVyPFfuu8nIjgncZKPb0VrmbgaOG-aAdbD5Tbs2epQHC0PqNfRA==">
             <div class="login-wrap">
@@ -16,10 +16,15 @@
                         <span class="input-group-addon">
                             <i class="icon_profile"></i>
                         </span>
-                        <input type="text" formControlName="username" [(ngModel)]="loginRequest.username" class="form-control" [ngClass]="{ 'is-invalid': f.username.touched && f.username.errors }" />
+                        <input type="text" formControlName="username" [(ngModel)]="loginRequest.username"
+                            class="form-control"
+                            [ngClass]="{ 'is-invalid': f.username.touched && f.username.errors }" />
                         <div *ngIf="f.username.touched && f.username.errors" class="invalid-feedback">
                             <div *ngIf="f.username.errors.required">Username is required</div>
-                            <div *ngIf="f.username.errors.minlength">Username or Email must be 5 characters long, we need another {{f.username.errors.minlength.requiredLength - f.username.errors.minlength.actualLength}} characters </div>
+                            <div *ngIf="f.username.errors.minlength">Username or Email must be 5 characters long, we
+                                need another
+                                {{f.username.errors.minlength.requiredLength - f.username.errors.minlength.actualLength}}
+                                characters </div>
                         </div>
                     </div>
                     <div class="help-block"></div>
@@ -30,20 +35,23 @@
                         <span class="input-group-addon">
                             <i class="icon_key_alt"></i>
                         </span>
-                        <input [type]="text" formControlName="password" [(ngModel)]="loginRequest.password" class="form-control" [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }" />
+                        <input type="text" formControlName="password" [(ngModel)]="loginRequest.password"
+                            class="form-control"
+                            [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }" />
                         <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback">
                             <div *ngIf="f.password.errors.required">Password is required</div>
-                            <div *ngIf="f.password.errors.minlength">Password must be 5 characters long, we need another {{f.password.errors.minlength.requiredLength - f.password.errors.minlength.actualLength}} characters </div>
-                        </div> 
+                            <div *ngIf="f.password.errors.minlength">Password must be 5 characters long, we need another
+                                {{f.password.errors.minlength.requiredLength - f.password.errors.minlength.actualLength}}
+                                characters </div>
+                        </div>
                     </div>
                     <div class="help-block"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group field-loginform-rememberme">
-                            <label><input
-                                type="checkbox" id="loginform-rememberme" formControlName="rememberMe" [(ngModel)]="rememberMe" name="rememberMe"
-                                    > Remember Me</label>
+                            <label><input type="checkbox" id="loginform-rememberme" formControlName="rememberMe"
+                                    [(ngModel)]="rememberMe" name="rememberMe"> Remember Me</label>
 
                             <div class="help-block"></div>
                         </div>
@@ -54,11 +62,13 @@
                     </div>
                 </div>
             </div>
-            <button [disabled]="loginForm.invalid" (click)="onSubmit()" class="btn btn-primary btn-lg btn-block" name="login-button">login</button>
-            <div routerLink="/registerUser" class="btn btn-primary btn-lg btn-block" name="registerUser-button">Create New User</div>
+            <button [disabled]="loginForm.invalid" (click)="onSubmit()" class="btn btn-primary btn-lg btn-block"
+                name="login-button">login</button>
+            <div routerLink="/registerUser" class="btn btn-primary btn-lg btn-block" name="registerUser-button">Create
+                New User</div>
         </form>
     </div>
     {{loginRequest|json}}
     <p>Form value: {{ loginForm.value | json }}</p>
-<p>Form status: {{ loginForm.status | json }}</p>
+    <p>Form status: {{ loginForm.status | json }}</p>
 </div>
