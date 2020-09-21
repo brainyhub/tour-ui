@@ -2,31 +2,21 @@
 <div class="container" style="margin-bottom: 60px">
   <div class="registerForm-user">
     <div style="max-width: 350px; margin: 130px auto 0; text-align: center">
-      <a
-        href=""
-        style="
+      <a href="" style="
           padding-top: 50px;
           padding-top: 50px;
           font-size: 22px;
           text-transform: uppercase;
-        "
-      >
-        <span class="lite">Tours</span></a
-      >
+        ">
+        <span class="lite">Tours</span></a>
     </div>
     <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit()">
       <div class="registerForm-user">
         <div class="form-group">
           <label for="username">Username</label>
-          <input
-            [(ngModel)]="registerUser.username"
-            type="text"
-            formControlName="username"
-            class="form-control"
-            [ngClass]="{ 'is-invalid': f.username.touched && f.username.errors }"
-            placeholder="Enter username here"
-            (change)="checkUserName()"
-          />
+          <input [(ngModel)]="registerUser.username" type="text" formControlName="username" class="form-control"
+            [ngClass]="{ 'is-invalid': f.username.touched && f.username.errors }" placeholder="Enter username here"
+            (change)="checkUserName()" />
           <div *ngIf="f.password1.touched && f.username.errors" class="invalid-feedback">
             <div *ngIf="f.username.errors.required">Username is required</div>
             <div *ngIf="f.username.errors.minlength">
@@ -44,15 +34,9 @@
         </div>
         <div class="form-group">
           <label for="password1">Password</label>
-          <input
-            [(ngModel)]="registerUser.password"
-            [type]="text"
-            formControlName="password1"
-            class="form-control"
-            [ngClass]="{ 'is-invalid': f.password1.touched && f.password1.errors }"
-            placeholder="Enter Password here"
-            (change)="passwordCheck()"
-          />
+          <input [(ngModel)]="registerUser.password" type="text" formControlName="password1" class="form-control"
+            [ngClass]="{ 'is-invalid': f.password1.touched && f.password1.errors }" placeholder="Enter Password here"
+            (change)="passwordCheck()" />
           <div *ngIf="f.password1.touched && f.password1.errors" class="invalid-feedback">
             <div *ngIf="f.password1.errors.required">Password is required</div>
             <div *ngIf="f.password1.errors.minlength">
@@ -60,21 +44,16 @@
               {{
                 f.password1.errors.minlength.requiredLength -
                   f.password1.errors.minlength.actualLength
-              }} 
+              }}
               characters
             </div>
           </div>
         </div>
         <div class="form-group">
           <label for="password2">Confirm Password</label>
-          <input
-            [type]="text"
-            formControlName="password2"
-            class="form-control"
+          <input type="text" formControlName="password2" class="form-control"
             [ngClass]="{ 'is-invalid': f.password2.touched && f.password2.errors }"
-            placeholder="Enter Confirm Password here"
-            (change)="passwordCheck()"
-          />
+            placeholder="Enter Confirm Password here" (change)="passwordCheck()" />
           <div *ngIf="passwordMismatch">
             Confirm Password should be same as Password
           </div>
@@ -92,15 +71,9 @@
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input
-            type="text"
-            [(ngModel)]="registerUser.email"
-            formControlName="email"
-            class="form-control"
-            [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }"
-            placeholder="Enter email here"
-            (change)="checkEmail()"
-          />
+          <input type="text" [(ngModel)]="registerUser.email" formControlName="email" class="form-control"
+            [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }" placeholder="Enter email here"
+            (change)="checkEmail()" />
           <div *ngIf="checkemail">
             User already exist with this email. Please forgot password or login
           </div>
@@ -111,26 +84,16 @@
         </div>
         <div class="form-group">
           <label for="phone">Phone</label>
-          <input
-            [(ngModel)]="registerUser.phone"
-            type="number"
-            formControlName="phone"
-            class="form-control"
-            [ngClass]="{ 'is-invalid': f.phone.touched && f.phone.errors }"
-            placeholder="Enter Phone here"
-          />
+          <input [(ngModel)]="registerUser.phone" type="number" formControlName="phone" class="form-control"
+            [ngClass]="{ 'is-invalid': f.phone.touched && f.phone.errors }" placeholder="Enter Phone here" />
           <div *ngIf="f.phone.touched && f.phone.errors" class="invalid-feedback">
             <div *ngIf="f.phone.errors.required">Phone is required</div>
           </div>
         </div>
       </div>
       <div class="form-group">
-        <button
-        [disabled]="registerForm.invalid"
-          type="submit"
-          class="btn btn-primary btn-lg btn-block"
-          name="login-button"
-        >
+        <button [disabled]="registerForm.invalid" type="submit" class="btn btn-primary btn-lg btn-block"
+          name="login-button">
           Register
         </button>
         <div routerLink="/login" class="btn btn-primary btn-lg btn-block">
