@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from "./../service/user.service";
 import { UserType } from './UserType';
 import { UserRoleType } from './UserRoleType';
-
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -11,12 +10,10 @@ import { UserRoleType } from './UserRoleType';
 export class UsersComponent implements OnInit {
   users: UserType;
   assignRoleType: UserRoleType;
-  show: Boolean = false;
   constructor(private userService: UserService) {
     this.userData();
     this.assignR();
    }
-
   ngOnInit() {
   }
   userData(){
@@ -30,5 +27,5 @@ export class UsersComponent implements OnInit {
       console.log(data);
       this.assignRoleType = data;
     });
-  } 
+  }
 }

@@ -27,10 +27,8 @@
                   <td>{{y.name}}</td>
                 </ng-container>
                 <td>
-                  <select class="form-control wp-70">
-                    <ng-container *ngFor="let role of assignRoleType">
-                      <option>{{role.name}}</option>
-                    </ng-container>                    
+                  <select class="form-control">
+                    <option *ngFor="let role of assignRoleType">{{role.name}}</option>
                   </select>
                 </td>
             </tr>
