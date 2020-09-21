@@ -1,5 +1,5 @@
-﻿import { Menu } from '../domain/menu';
-export const VALIDMENUS: Menu[] = [
+﻿import { MenuType } from '../domain/menutype';
+export const VALIDMENUS: MenuType[] = [
   {
     "id": "dashboard",
     "permission": "MENU_DASHBOARD",

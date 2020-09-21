@@ -6,5 +6,5 @@ export class MenuType {
     title: string;
     active:Boolean;
     hasChild:Boolean;
-    submenu:Menu[];
+    submenu:MenuType[];
   }
