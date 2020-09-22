@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from "./../service/user.service";
 import { UserType } from './UserType';
 import { UserRoleType } from './UserRoleType';
+import { AssignRoleType } from './AssignRoleType';
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -10,11 +12,16 @@ import { UserRoleType } from './UserRoleType';
 export class UsersComponent implements OnInit {
   users: UserType;
   assignRoleType: UserRoleType;
+  roleAssignType: AssignRoleType;
   constructor(private userService: UserService) {
     this.userData();
-    this.assignR();
+    this.roles();
    }
   ngOnInit() {
+    this.roleAssignType = {
+      roleIds: [],
+      userId: 0
+    }
   }
   userData(){
     this.userService.getUser().subscribe((data) => {
@@ -22,10 +29,21 @@ export class UsersComponent implements OnInit {
       this.users = data;
     });
   }
-  assignR(){
+  roles(){
     this.userService.getRole().subscribe((data) => {
       console.log(data);
       this.assignRoleType = data;
     });
+  }
+  assignRole($event, userId: Number){
+    let roleId = $event.target.options[$event.target.options.selectedIndex].value;
+    this.roleAssignType.roleIds = roleId;
+    this.roleAssignType.userId = userId;
+    this.userService.roleAssign(this.roleAssignType).subscribe((response) => {
+      console.log(response);
+    },
+      (error) => console.log("Error!", error)
+    );
+    
   }
 }

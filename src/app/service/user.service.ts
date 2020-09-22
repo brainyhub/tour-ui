@@ -3,6 +3,8 @@ import { HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { AssignRoleType } from "./../users/AssignRoleType";
+
 
 @Injectable({
   providedIn: "root",
@@ -26,6 +28,14 @@ export class UserService {
         "Bearer " + sessionStorage.getItem("token")
       ),
     };
-    return this.http.get<any>(ServiceConstants.assignRolesUrl, header);
+    return this.http.get<any>(ServiceConstants.getRolesUrl, header);
   }
+  public roleAssign(role: AssignRoleType): Observable<any> {
+    const headers = {
+      Authorization: "Bearer " + sessionStorage.getItem("token"),
+    };
+    return this.http.post<any>(ServiceConstants.assignRolesUrl, role,{ headers }
+    );
+  }
+
 }

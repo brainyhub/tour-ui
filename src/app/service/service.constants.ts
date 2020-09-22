@@ -84,5 +84,5 @@ export class ServiceConstants {
   public static getUserUrl: string =
     ServiceConstants.appContext + "/admin-service/users";
   public static assignRolesUrl: string =
-    ServiceConstants.appContext + "/admin-service/roles";
+    ServiceConstants.appContext + "/admin-service/assignUserRole";
 }
