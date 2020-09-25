@@ -50,7 +50,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
 import { DataTablesModule } from 'angular-datatables';
 import { TripManagementComponent } from './trip-management/trip-management.component';
-
+import { TripMapViewComponent } from './trip-map-view/trip-map-view.component';
+import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +67,6 @@ import { TripManagementComponent } from './trip-management/trip-management.compo
     UserProfileComponent,
     SearchComponent,
     EventBoardComponent,
-
     DashboardComponent,
     HomepageComponent,
     TripComponent,
@@ -93,6 +93,7 @@ import { TripManagementComponent } from './trip-management/trip-management.compo
     StatusComponent,
     ChangePasswordComponent,
     TripManagementComponent,
+    TripMapViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,6 +105,9 @@ import { TripManagementComponent } from './trip-management/trip-management.compo
     ReactiveFormsModule,
     DataTablesModule,
     ToastrModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyD87TmEptZswHnGqtmqYHWG4LYdqvALPmY',
+    }),
   ],
   providers: [CookieService, NotifyService],
   bootstrap: [AppComponent],

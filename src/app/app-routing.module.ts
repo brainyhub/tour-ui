@@ -27,6 +27,8 @@ import { AssignPermissionComponent } from "./assign-permission/assign-permission
 import { UsersComponent } from "./users/users.component";
 import { TripManagementComponent } from './trip-management/trip-management.component';
 
+import { TripMapViewComponent } from './trip-map-view/trip-map-view.component';
+
 
 const routes: Routes = [
   //Site routes goes here
@@ -53,6 +55,7 @@ const routes: Routes = [
       { path: "userprofile", component: UserProfileComponent },
       { path: "booking", component: BookingComponent },
       { path: "tripManagement", component:TripManagementComponent},
+      { path: "tripMapView", component:TripMapViewComponent},
     ],
   },
 

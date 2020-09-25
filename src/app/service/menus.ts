@@ -48,6 +48,16 @@ export const VALIDMENUS: MenuType[] = [
     "submenu":  []
   },
   {
+    "id": "tripMapView",
+    "permission": "MENU_TRIP",
+    "icon": "menu-arrow arrow_carrot-right",
+    "url": "/site/tripMapView",
+    "title": "Trip Map View",
+    "active": false,
+    "hasChild": false,
+    "submenu":  []
+  },
+  {
     "id": "invoice",
     "permission": "MENU_TRIP",
     "icon": "menu-arrow arrow_carrot-right",

@@ -1,0 +1,13 @@
+<div style="margin-top:60px">
+    start latitude <input type="text" [(ngModel)]="startlatitude">
+    longitude<input type="text" [(ngModel)]="startlongitude"><br/>
+    end latitude<input type="text" [(ngModel)]="endlatitude">
+    longitude<input type="text" [(ngModel)]="endtlongitude">
+    <button type="button" (click)="initMap()">Map</button><br/>
+    pointing latitude :<input type="text" [(ngModel)]="lat">
+    longitude :<input type="text" [(ngModel)]="lng">
+    <agm-map id="map">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
+</div>
+
