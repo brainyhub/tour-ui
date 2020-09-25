@@ -35,15 +35,16 @@ export class UsersComponent implements OnInit {
       this.assignRoleType = data;
     });
   }
-  assignRole($event, userId: Number){
+  getAssignedRole($event, userId: Number){
     let roleId = $event.target.options[$event.target.options.selectedIndex].value;
     this.roleAssignType.roleIds = roleId;
-    this.roleAssignType.userId = userId;
+    this.roleAssignType.userId = userId;        
+  }
+  assignRole(){
     this.userService.roleAssign(this.roleAssignType).subscribe((response) => {
       console.log(response);
     },
       (error) => console.log("Error!", error)
     );
-    
   }
 }

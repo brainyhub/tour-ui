@@ -27,9 +27,10 @@
                   <td>{{y.name}}</td>
                 </ng-container>
                 <td>
-                  <select class="form-control" (change)="assignRole($event, data.id)">
+                  <select (change)="getAssignedRole($event, data.id)">
                     <option *ngFor="let role of assignRoleType" [value]="role.id">{{role.name}}</option>
-                  </select>
+                  </select>&nbsp;
+                  <button class="btn-primary" (click)="assignRole()">Assign</button>
                 </td>
             </tr>
           </ng-container>
